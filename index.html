@@ -4,9 +4,10 @@
 <title>maxawake</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="prism.css">
 <style>
 </style>
-<script src=""></script>
+<script src=""></script> 
 <body>
 
 <div class="">
@@ -16,7 +17,7 @@
  <p>Computer Science and Physics at <a href="https://www.uni-heidelberg.de/de">Heidelberg University</a></p>
  <p>Research Assistant at Max-Planck-Insitute for Nuclear Physics</p>
  <p>Working Student at Bosch Sensortec GmbH</p>
- <p>Links: <a href="https://www.instagram.com/maxawake">instagram</a> <a href="https://spiritual-natura.tumblr.com">tumblr</a> <a href="https://www.github.com/maxawake">github</a> <a href="https://twitter.com/MaxWakingUp">twitter</a></p>
+ <p>Links: <a href="https://www.instagram.com/maxawake">Instagram</a> <a href="https://spiritual-natura.tumblr.com">Tumblr</a> <a href="https://www.github.com/maxawake">Github</a> <a href="https://twitter.com/MaxWakingUp">Twitter</a></p>
 </div>
 
 <div class="">
@@ -52,141 +53,15 @@
       </ul> 
 </div>
 
-<div class="tip" markdown="1">
-    # List file tree with size
-```bash
-tree --du -h /path/to/folder
-```
-
-# Get first or last lines of file
-```bash
-head path/to/file
-# or 
-tail path/to/file
-```
-# Run scripts in background```
-```bash
-^Z
-bg // put into background
-fg // put into foreground
-
-```
-# Find Program in PATH
-```bash
-compgen -c | grep "name"
-```
-
-# Remove unused dependencies
-```bash
-pacman -Rsn $(pacman -Qdtq)
-yay -Scc
-```
-# Find file in path
-```bash
-find . -name *.jpg
-```
-or faster 
-```bash
-updatedb
-locate -b filename
-```
-# Export PATH variable (in `.bashrc` or `.profile`)
-```bash
-export PATH=$PATH:/file/path
-```
-
-# Delete all files of extension
-```bash
-find . -name "*.jpg" -type f -delete
-find . -name "*name*" -exec rm -rf {} +
-```
-
-
-# Run script on startup
-
-```bash
-sudo chmod 777 /home/max/startup.sh
-crontab -e
-@reboot /home/max/startup.sh
-```
-
-# Compile and execute MPI
-```bash
-mpicxx main.cpp -o main -lm && mpirun -np 4 ./main              
-```
-
-# Copy over ssh with intermediate server
-```bash
-scp -o ProxyCommand="ssh -W %h:%p userB@serverB" userC@serverC:/path/to/file.txt home/userA/output.txt
-```
-
-# ssh public key too open error
-
-Typically you want the permissions to be:
--   `.ssh` directory: `700 (drwx------)`
--   public key (`.pub` file): `644 (-rw-r--r--)`
--   private key (`id_rsa`): `600 (-rw-------)`
--   lastly your home directory should not be writeable by the group or others (at most `755 (drwxr-xr-x)`).
-
-# Add ssh private key
-```bash
-ssh-add
-ssd-add -l # to list
-```
-
-# Print all environment variables
-```bash
-printenv
-```
-
-# List all linked libraries of program
-```bash
-ldd path/to/program
-```
-
-# Download instagram profiel
-```bash
-pip install instaloader
-instaloader profile profilename
-```
-# Apply command to a list of anything with xargs
-
-```bash
-# for example
-find /path -type f -print | xargs rm
-```
+<div class="">
+  <h1>Notes</h1>
+  <ul>
+      <li><a href="bash.html">Actually useful bash tricks</a></li>
+      <li><a href="spherical_harmonics.html">Spherical Harmonics</a></li>
+    </ul> 
 </div>
 
-<a href="spherical_harmonics.html">Spherical Harmonics</a>
 
-<!-- ©2015 Johannes Jakob
-     Made with <3 in Germany -->
-
-<div class="window">
-  <div class="titlebar">
-    <div class="buttons">
-      <div class="close">
-        <a class="closebutton" href="#"><span><strong>x</strong></span></a>
-        <!-- close button link -->
-      </div>
-      <div class="minimize">
-        <a class="minimizebutton" href="#"><span><strong>&ndash;</strong></span></a>
-        <!-- minimize button link -->
-      </div>
-      <div class="zoom">
-        <a class="zoombutton" href="#"><span><strong>+</strong></span></a>
-        <!-- zoom button link -->
-      </div>
-    </div>
-    Python
-    <!-- window title -->
-  </div>
-  <div class="content">
-    <h3>maxawake@github.io:~/ python</h3>
-    print("Hey Guys!")
-    <!-- window content -->
-  </div>
-</div>
 
 </body>
 </html> 
