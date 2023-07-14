@@ -23,7 +23,7 @@
     <h1>Stuff i love</h1>
     <ul>
         <li>Coffee</li>
-        <li>Scientific Visualization</li>
+        <li>3D Computer Graphics and Scientific Visualization</li>
         <li>Fluid and Plasma Simulations</li>
         <li>Machine Learning and Artificial Intelligence</li>
         <li>Astronomy and Astrophysics</li>
@@ -44,11 +44,120 @@
 <div class="">
     <h1>Hobbies</h1>
     <ul>
-        <li>Playing Piano and Guitar</li>
+        <li>Playing Piano and Guitar as well as Digital Music Production</li>
+        <li>Astrophotography</li>
+        <li>Penspinning</li>
+        <li>Dancing at Parties and Music Festivals</li>
+        <li>Playing Video Game</li>
       </ul> 
 </div>
 
-<a href="spherical_harmonics.html">test</a>
+<div class="tip" markdown="1">
+    # List file tree with size
+```bash
+tree --du -h /path/to/folder
+```
+
+# Get first or last lines of file
+```bash
+head path/to/file
+# or 
+tail path/to/file
+```
+# Run scripts in background```
+```bash
+^Z
+bg // put into background
+fg // put into foreground
+
+```
+# Find Program in PATH
+```bash
+compgen -c | grep "name"
+```
+
+# Remove unused dependencies
+```bash
+pacman -Rsn $(pacman -Qdtq)
+yay -Scc
+```
+# Find file in path
+```bash
+find . -name *.jpg
+```
+or faster 
+```bash
+updatedb
+locate -b filename
+```
+# Export PATH variable (in `.bashrc` or `.profile`)
+```bash
+export PATH=$PATH:/file/path
+```
+
+# Delete all files of extension
+```bash
+find . -name "*.jpg" -type f -delete
+find . -name "*name*" -exec rm -rf {} +
+```
+
+
+# Run script on startup
+
+```bash
+sudo chmod 777 /home/max/startup.sh
+crontab -e
+@reboot /home/max/startup.sh
+```
+
+# Compile and execute MPI
+```bash
+mpicxx main.cpp -o main -lm && mpirun -np 4 ./main              
+```
+
+# Copy over ssh with intermediate server
+```bash
+scp -o ProxyCommand="ssh -W %h:%p userB@serverB" userC@serverC:/path/to/file.txt home/userA/output.txt
+```
+
+# ssh public key too open error
+
+Typically you want the permissions to be:
+-   `.ssh` directory: `700 (drwx------)`
+-   public key (`.pub` file): `644 (-rw-r--r--)`
+-   private key (`id_rsa`): `600 (-rw-------)`
+-   lastly your home directory should not be writeable by the group or others (at most `755 (drwxr-xr-x)`).
+
+# Add ssh private key
+```bash
+ssh-add
+ssd-add -l # to list
+```
+
+# Print all environment variables
+```bash
+printenv
+```
+
+# List all linked libraries of program
+```bash
+ldd path/to/program
+```
+
+# Download instagram profiel
+```bash
+pip install instaloader
+instaloader profile profilename
+```
+# Apply command to a list of anything with xargs
+
+```bash
+# for example
+find /path -type f -print | xargs rm
+```
+</div>
+
+<a href="spherical_harmonics.html">Spherical Harmonics</a>
 
 <!-- ©2015 Johannes Jakob
      Made with <3 in Germany -->
