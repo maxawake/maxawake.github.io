@@ -1,129 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Actually Useful Bash Tricks</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="prism.css">
-</head>
+<meta charset="UTF-8">
+<title>maxawake</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="prism.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <body>
-    <h1>Actually Useful Bash Tricks</h1>
-    <p>This is a collection of useful tricks with the shell. Apart from essential commands like cp or mv the terminal is 
-        an extremely versatile, fast and useful tool when working with computers, operating systems or programs. Most of the 
-        tricks i gathered apply only for Arch Linux and are somewhat special. With special i mean that i use them once every few month
-        and can't remember them anymore. I thought i share my notes with the world.
-    </p>
-    <md-block style="font-family: ;">
-        # List file tree with size
-        ```bash
-        tree --du -h /path/to/folder
-        ```
-        
-        # Get first or last lines of file
-        ```bash
-        head path/to/file
-        # or 
-        tail path/to/file
-        ```
-        # Run scripts in background
-        ```bash
-        ^Z
-        bg // put into background
-        fg // put into foreground
-        
-        ```
-        # Find Program in PATH
-        ```bash
-        compgen -c | grep "name"
-        ```
-        
-        # Remove unused dependencies
-        ```bash
-        pacman -Rsn $(pacman -Qdtq)
-        yay -Scc
-        ```
-        # Find file in path
-        ```bash
-        find . -name *.jpg
-        ```
-        or faster 
-        ```bash
-        updatedb
-        locate -b filename
-        ```
-        # Export PATH variable (in `.bashrc` or `.profile`)
-        ```bash
-        export PATH=$PATH:/file/path
-        ```
-        
-        # Delete all files of extension
-        ```bash
-        find . -name "*.jpg" -type f -delete
-        find . -name "*name*" -exec rm -rf {} +
-        ```
-        
-        
-        # Run script on startup
-        
-        ```bash
-        sudo chmod 777 /home/max/startup.sh
-        crontab -e
-        @reboot /home/max/startup.sh
-        ```
-        
-        # Compile and execute MPI
-        ```bash
-        mpicxx main.cpp -o main -lm && mpirun -np 4 ./main              
-        ```
-        
-        # Copy over ssh with intermediate server
-        ```bash
-        scp -o ProxyCommand="ssh -W %h:%p userB@serverB" userC@serverC:/path/to/file.txt home/userA/output.txt
-        ```
-        
-        # ssh public key too open error
-        
-        Typically you want the permissions to be:
-        -   `.ssh` directory: `700 (drwx------)`
-        -   public key (`.pub` file): `644 (-rw-r--r--)`
-        -   private key (`id_rsa`): `600 (-rw-------)`
-        -   lastly your home directory should not be writeable by the group or others (at most `755 (drwxr-xr-x)`).
-        
-        # Add ssh private key
-        ```bash
-        ssh-add
-        ssd-add -l # to list
-        ```
-        
-        # Print all environment variables
-        ```bash
-        printenv
-        ```
-        
-        # List all linked libraries of program
-        ```bash
-        ldd path/to/program
-        ```
-        
-        # Download instagram profiel
-        ```bash
-        pip install instaloader
-        instaloader profile profilename
-        ```
-        # Apply command to a list of anything with xargs
-        
-        ```bash
-        # for example
-        find /path -type f -print | xargs rm
-        ```
-    </md-block>
 
-    <a href="spherical_harmonics.html">Spherical Harmonics</a>
-    
-    
+  <div class="container-fluid pt-5">
+    <div class="row gap-3">
+      <div class="p-2 col-lg col-sm-12">
+        <div class="row text-end nav-item p-3">
+          <h1><a href="index.html">maxawake</a></h1>
+          <a href="projects.html">Projects</a>
+          <a href="tutorials.html">Tutorials</a>
+          <a href="links.html">Links</a>
+        </div>
+      </div>
+      <div class="p-2 col-lg-8 col-sm-12">
+        <div class="row">
+            <h1>Actually Useful Bash Tricks</h1>
+            <p>This is a collection of useful tricks with the shell. Apart from essential commands like cp or mv the terminal is 
+                an extremely versatile, fast and useful tool when working with computers, operating systems or programs. Most of the 
+                tricks i gathered apply only for Arch Linux and are somewhat special. With special i mean that i use them once every few month
+                and can't remember them anymore. I thought i share my notes with the world.
+            </p>
+            <md-block>
+                # List file tree with size
+                ```bash
+                tree --du -h /path/to/folder
+                ```
+                
+                # Get first or last lines of file
+                ```bash
+                head path/to/file
+                # or 
+                tail path/to/file
+                ```
+                # Run scripts in background
+                ```bash
+                ^Z
+                bg // put into background
+                fg // put into foreground
+                
+                ```
+                # Find Program in PATH
+                ```bash
+                compgen -c | grep "name"
+                ```
+                
+                # Remove unused dependencies
+                ```bash
+                pacman -Rsn $(pacman -Qdtq)
+                yay -Scc
+                ```
+                # Find file in path
+                ```bash
+                find . -name *.jpg
+                ```
+                or faster 
+                ```bash
+                updatedb
+                locate -b filename
+                ```
+                # Export PATH variable (in `.bashrc` or `.profile`)
+                ```bash
+                export PATH=$PATH:/file/path
+                ```
+                
+                # Delete all files of extension
+                ```bash
+                find . -name "*.jpg" -type f -delete
+                find . -name "*name*" -exec rm -rf {} +
+                ```
+                
+                
+                # Run script on startup
+                
+                ```bash
+                sudo chmod 777 /home/max/startup.sh
+                crontab -e
+                @reboot /home/max/startup.sh
+                ```
+                
+                # Compile and execute MPI
+                ```bash
+                mpicxx main.cpp -o main -lm && mpirun -np 4 ./main              
+                ```
+                
+                # Copy over ssh with intermediate server
+                ```bash
+                scp -o ProxyCommand="ssh -W %h:%p userB@serverB" userC@serverC:/path/to/file.txt home/userA/output.txt
+                ```
+                
+                # ssh public key too open error
+                
+                Typically you want the permissions to be:
+                -   `.ssh` directory: `700 (drwx------)`
+                -   public key (`.pub` file): `644 (-rw-r--r--)`
+                -   private key (`id_rsa`): `600 (-rw-------)`
+                -   lastly your home directory should not be writeable by the group or others (at most `755 (drwxr-xr-x)`).
+                
+                # Add ssh private key
+                ```bash
+                ssh-add
+                ssd-add -l # to list
+                ```
+                
+                # Print all environment variables
+                ```bash
+                printenv
+                ```
+                
+                # List all linked libraries of program
+                ```bash
+                ldd path/to/program
+                ```
+                
+                # Download instagram profiel
+                ```bash
+                pip install instaloader
+                instaloader profile profilename
+                ```
+                # Apply command to a list of anything with xargs
+                
+                ```bash
+                # for example
+                find /path -type f -print | xargs rm
+                ```
+            </md-block>
+        
+
+        </div>
+      </div>
+      <div class="p-2 col-lg col-sm-12">
+      </div>
+    </div>
+    </div>
     <script src="prism.js"></script>
     <script type="module" src="https://md-block.verou.me/md-block.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 </body>
-</html>
+</html> 
