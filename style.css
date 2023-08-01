@@ -4,6 +4,7 @@ body {
   font-family: monospace;
   padding: 1em;
   font-size: 16pt;
+  line-height: 2.5em;
 }
 
 .row li {
