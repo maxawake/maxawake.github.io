@@ -1,0 +1,49 @@
+body {
+  background: #161616;
+  color: #e6e6e6;
+  font-family: monospace;
+  padding: 1em;
+  font-size: 16pt;
+  line-height: 2.5em;
+}
+
+.row li {
+  margin-left: 2em;
+}
+
+.Image img{
+  width: 30em;
+  height: auto;
+  margin-left: 0.3em;
+  padding: 1em;
+}
+
+.container-fluid a {
+  color: #079369;
+}
+
+.container-fluid a:hover {
+  color:#056246
+}
+
+.nav-item a {
+  color: #e6e6e6;
+  text-decoration: none;
+}
+
+.nav-item a:hover {
+  color:#b0b0b0
+}
+
+.token.tag {
+  display: inline;
+  padding: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  text-align: inherit;
+  vertical-align: inherit;
+  border-radius: inherit;
+  font-weight: inherit;
+  white-space: inherit;
+}
+

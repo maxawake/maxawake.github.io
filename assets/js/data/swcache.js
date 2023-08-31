@@ -1,41 +1,41 @@
 const resource = [
     /* --- CSS --- */
-    '/maxawake/assets/css/style.css',
+    '/assets/css/style.css',
 
     /* --- PWA --- */
-    '/maxawake/app.js',
-    '/maxawake/sw.js',
+    '/app.js',
+    '/sw.js',
 
     /* --- HTML --- */
-    '/maxawake/index.html',
-    '/maxawake/404.html',
+    '/index.html',
+    '/404.html',
 
     
-        '/maxawake/categories/',
+        '/categories/',
     
-        '/maxawake/tags/',
+        '/tags/',
     
-        '/maxawake/archives/',
+        '/archives/',
     
-        '/maxawake/about/',
+        '/about/',
     
 
     /* --- Favicons & compressed JS --- */
     
     
-        '/maxawake/assets/img/favicons/android-chrome-192x192.png',
-        '/maxawake/assets/img/favicons/android-chrome-512x512.png',
-        '/maxawake/assets/img/favicons/apple-touch-icon.png',
-        '/maxawake/assets/img/favicons/favicon-16x16.png',
-        '/maxawake/assets/img/favicons/favicon-32x32.png',
-        '/maxawake/assets/img/favicons/favicon.ico',
-        '/maxawake/assets/img/favicons/mstile-150x150.png',
-        '/maxawake/assets/js/dist/categories.min.js',
-        '/maxawake/assets/js/dist/commons.min.js',
-        '/maxawake/assets/js/dist/home.min.js',
-        '/maxawake/assets/js/dist/misc.min.js',
-        '/maxawake/assets/js/dist/page.min.js',
-        '/maxawake/assets/js/dist/post.min.js'
+        '/assets/img/favicons/android-chrome-192x192.png',
+        '/assets/img/favicons/android-chrome-512x512.png',
+        '/assets/img/favicons/apple-touch-icon.png',
+        '/assets/img/favicons/favicon-16x16.png',
+        '/assets/img/favicons/favicon-32x32.png',
+        '/assets/img/favicons/favicon.ico',
+        '/assets/img/favicons/mstile-150x150.png',
+        '/assets/js/dist/categories.min.js',
+        '/assets/js/dist/commons.min.js',
+        '/assets/js/dist/home.min.js',
+        '/assets/js/dist/misc.min.js',
+        '/assets/js/dist/page.min.js',
+        '/assets/js/dist/post.min.js'
 ];
 
 /* The request url with below domain will be cached */

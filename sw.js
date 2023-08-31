@@ -1,6 +1,6 @@
-self.importScripts('/maxawake/assets/js/data/swcache.js');
+self.importScripts('/assets/js/data/swcache.js');
 
-const cacheName = 'chirpy-20230830.211222';
+const cacheName = 'chirpy-20230831.045027';
 
 function verifyDomain(url) {
     for (const domain of allowedDomains) {

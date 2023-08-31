@@ -1,33 +1,33 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>http://localhost:4000/maxawake/</id>
+  <id>http://localhost:4000/</id>
   <title>Portfolio</title>
   <subtitle>Portfolio of Maximilian Maria Richter</subtitle>
-  <updated>2023-08-30T21:12:21+02:00</updated>
+  <updated>2023-08-31T04:50:27+02:00</updated>
   <author>
     <name>Maximilian Maria Richter</name>
-    <uri>http://localhost:4000/maxawake/</uri>
+    <uri>http://localhost:4000/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="http://localhost:4000/maxawake/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="http://localhost:4000/maxawake/"/>
+    href="http://localhost:4000/"/>
   <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
   <rights> © 2023 Maximilian Maria Richter </rights>
-  <icon>/maxawake/assets/img/favicons/favicon.ico</icon>
-  <logo>/maxawake/assets/img/favicons/favicon-96x96.png</logo>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
 
 
   
   <entry>
     <title>Vlasov Simulation in Python</title>
-    <link href="http://localhost:4000/maxawake/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
+    <link href="http://localhost:4000/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
     <published>2019-08-08T05:33:00+02:00</published>
   
     <updated>2019-08-08T05:33:00+02:00</updated>
   
-    <id>http://localhost:4000/maxawake/posts/vlasov_simulation/</id>
-    <content src="http://localhost:4000/maxawake/posts/vlasov_simulation/" />
+    <id>http://localhost:4000/posts/vlasov_simulation/</id>
+    <content src="http://localhost:4000/posts/vlasov_simulation/" />
     <author>
       <name>Maximilian Maria Richter</name>
     </author>
@@ -57,13 +57,13 @@
   
   <entry>
     <title>Knowledge Base</title>
-    <link href="http://localhost:4000/maxawake/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
+    <link href="http://localhost:4000/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
     <published>2019-08-08T05:33:00+02:00</published>
   
     <updated>2019-08-08T05:33:00+02:00</updated>
   
-    <id>http://localhost:4000/maxawake/posts/Knowledge-Base/</id>
-    <content src="http://localhost:4000/maxawake/posts/Knowledge-Base/" />
+    <id>http://localhost:4000/posts/Knowledge-Base/</id>
+    <content src="http://localhost:4000/posts/Knowledge-Base/" />
     <author>
       <name>Maximilian Maria Richter</name>
     </author>

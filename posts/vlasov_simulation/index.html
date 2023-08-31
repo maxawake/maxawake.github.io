@@ -44,8 +44,8 @@
 <meta property="og:locale" content="en" />
 <meta name="description" content="In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution." />
 <meta property="og:description" content="In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution." />
-<link rel="canonical" href="http://localhost:4000/maxawake/posts/vlasov_simulation/" />
-<meta property="og:url" content="http://localhost:4000/maxawake/posts/vlasov_simulation/" />
+<link rel="canonical" href="http://localhost:4000/posts/vlasov_simulation/" />
+<meta property="og:url" content="http://localhost:4000/posts/vlasov_simulation/" />
 <meta property="og:site_name" content="Portfolio" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2019-08-08T05:33:00+02:00" />
@@ -54,7 +54,7 @@
 <meta name="twitter:site" content="@MaxWakingUp" />
 <meta name="twitter:creator" content="@Maximilian Maria Richter" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Maximilian Maria Richter"},"dateModified":"2019-08-08T05:33:00+02:00","datePublished":"2019-08-08T05:33:00+02:00","description":"In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution.","headline":"Vlasov Simulation in Python","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/maxawake/posts/vlasov_simulation/"},"url":"http://localhost:4000/maxawake/posts/vlasov_simulation/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Maximilian Maria Richter"},"dateModified":"2019-08-08T05:33:00+02:00","datePublished":"2019-08-08T05:33:00+02:00","description":"In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution.","headline":"Vlasov Simulation in Python","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/posts/vlasov_simulation/"},"url":"http://localhost:4000/posts/vlasov_simulation/"}</script>
 <!-- End Jekyll SEO tag -->
 
   
@@ -69,15 +69,15 @@
 
 
 
-<link rel="apple-touch-icon" sizes="180x180" href="/maxawake/assets/img/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/maxawake/assets/img/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/maxawake/assets/img/favicons/favicon-16x16.png">
-<link rel="manifest" href="/maxawake/assets/img/favicons/site.webmanifest">
-<link rel="shortcut icon" href="/maxawake/assets/img/favicons/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
+<link rel="manifest" href="/assets/img/favicons/site.webmanifest">
+<link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
 <meta name="apple-mobile-web-app-title" content="Portfolio">
 <meta name="application-name" content="Portfolio">
 <meta name="msapplication-TileColor" content="#da532c">
-<meta name="msapplication-config" content="/maxawake/assets/img/favicons/browserconfig.xml">
+<meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
 
 
@@ -108,7 +108,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
 
-  <link rel="stylesheet" href="/maxawake/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
 
   
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.21.0/dist/tocbot.min.css">
@@ -133,7 +133,7 @@
 
 <div id="sidebar" class="d-flex flex-column align-items-end">
   <div class="profile-wrapper">
-    <a href="/maxawake/" id="avatar" class="rounded-circle">
+    <a href="/" id="avatar" class="rounded-circle">
       
         
         <img src="https://pbs.twimg.com/profile_images/1623340747956137987/58pWqZZZ_400x400.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
@@ -141,7 +141,7 @@
     </a>
 
     <div class="site-title">
-      <a href="/maxawake/">Portfolio</a>
+      <a href="/">Portfolio</a>
     </div>
     <div class="site-subtitle fst-italic">maxawake</div>
   </div>
@@ -150,7 +150,7 @@
   <ul class="nav flex-column flex-grow-1 w-100 ps-0">
     <!-- home -->
     <li class="nav-item">
-      <a href="/maxawake/" class="nav-link">
+      <a href="/" class="nav-link">
         <i class="fa-fw fas fa-home"></i>
         <span>HOME</span>
       </a>
@@ -158,7 +158,7 @@
     <!-- the real tabs -->
     
       <li class="nav-item">
-        <a href="/maxawake/categories/" class="nav-link">
+        <a href="/categories/" class="nav-link">
           <i class="fa-fw fas fa-stream"></i>
           
 
@@ -168,7 +168,7 @@
       <!-- .nav-item -->
     
       <li class="nav-item">
-        <a href="/maxawake/tags/" class="nav-link">
+        <a href="/tags/" class="nav-link">
           <i class="fa-fw fas fa-tags"></i>
           
 
@@ -178,7 +178,7 @@
       <!-- .nav-item -->
     
       <li class="nav-item">
-        <a href="/maxawake/archives/" class="nav-link">
+        <a href="/archives/" class="nav-link">
           <i class="fa-fw fas fa-archive"></i>
           
 
@@ -188,7 +188,7 @@
       <!-- .nav-item -->
     
       <li class="nav-item">
-        <a href="/maxawake/about/" class="nav-link">
+        <a href="/about/" class="nav-link">
           <i class="fa-fw fas fa-info-circle"></i>
           
 
@@ -272,7 +272,7 @@
 
       
         <a
-          href="/maxawake/feed.xml"
+          href="/feed.xml"
           aria-label="rss"
           
 
@@ -308,7 +308,7 @@
         
           
             <span>
-              <a href="/maxawake/">
+              <a href="/">
                 Home
               </a>
             </span>
@@ -1115,8 +1115,8 @@
   <div class="post-meta mb-3">
     <i class="far fa-folder-open fa-fw me-1"></i>
     
-      <a href='/maxawake/categories/simulation/'>Simulation</a>,
-      <a href='/maxawake/categories/tutorial/'>Tutorial</a>
+      <a href='/categories/simulation/'>Simulation</a>,
+      <a href='/categories/tutorial/'>Tutorial</a>
   </div>
   
 
@@ -1125,7 +1125,7 @@
   <div class="post-tags">
     <i class="fa fa-tags fa-fw me-1"></i>
       
-      <a href="/maxawake/tags/simulation/"
+      <a href="/tags/simulation/"
           class="post-tag no-text-decoration" >simulation</a>
       
   </div>
@@ -1160,7 +1160,7 @@
     
       
       <a
-        href="https://twitter.com/intent/tweet?text=Vlasov%20Simulation%20in%20Python%20-%20Portfolio&url=http%3A%2F%2Flocalhost%3A4000%2Fmaxawake%2Fposts%2Fvlasov_simulation%2F"
+        href="https://twitter.com/intent/tweet?text=Vlasov%20Simulation%20in%20Python%20-%20Portfolio&url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fvlasov_simulation%2F"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Twitter"
@@ -1173,7 +1173,7 @@
     
       
       <a
-        href="https://www.facebook.com/sharer/sharer.php?title=Vlasov%20Simulation%20in%20Python%20-%20Portfolio&u=http%3A%2F%2Flocalhost%3A4000%2Fmaxawake%2Fposts%2Fvlasov_simulation%2F"
+        href="https://www.facebook.com/sharer/sharer.php?title=Vlasov%20Simulation%20in%20Python%20-%20Portfolio&u=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fvlasov_simulation%2F"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Facebook"
@@ -1186,7 +1186,7 @@
     
       
       <a
-        href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fmaxawake%2Fposts%2Fvlasov_simulation%2F&text=Vlasov%20Simulation%20in%20Python%20-%20Portfolio"
+        href="https://t.me/share/url?url=http%3A%2F%2Flocalhost%3A4000%2Fposts%2Fvlasov_simulation%2F&text=Vlasov%20Simulation%20in%20Python%20-%20Portfolio"
         data-bs-toggle="tooltip"
         data-bs-placement="top"
         title="Telegram"
@@ -1290,10 +1290,10 @@
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
-        <a class="post-tag btn btn-outline-primary" href="/maxawake/tags/physics/">Physics</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/physics/">Physics</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/maxawake/tags/simulation/">simulation</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/simulation/">simulation</a>
       
     </div>
   </div>
@@ -1389,7 +1389,7 @@
         
         
         <div class="col">
-          <a href="/maxawake/posts/Knowledge-Base/" class="card post-preview h-100">
+          <a href="/posts/Knowledge-Base/" class="card post-preview h-100">
             <div class="card-body">
               <!--
   Date format snippet
@@ -1444,7 +1444,7 @@ $\sim$ equal numbers of +,- charge...
 <div class="post-navigation d-flex justify-content-between">
   
     <a
-      href="/maxawake/posts/Knowledge-Base/"
+      href="/posts/Knowledge-Base/"
       class="btn btn-outline-primary"
       prompt="Older"
     >
@@ -1525,10 +1525,10 @@ $\sim$ equal numbers of +,- charge...
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
-        <a class="post-tag btn btn-outline-primary" href="/maxawake/tags/physics/">Physics</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/physics/">Physics</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/maxawake/tags/simulation/">simulation</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/simulation/">simulation</a>
       
     </div>
   </div>
@@ -1715,7 +1715,7 @@ $\sim$ equal numbers of +,- charge...
 
 
 
-<script defer src="/maxawake/assets/js/dist/post.min.js"></script>
+<script defer src="/assets/js/dist/post.min.js"></script>
 
 
   <!-- MathJax -->
@@ -1819,7 +1819,7 @@ $\sim$ equal numbers of +,- charge...
   SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('search-results'),
-    json: '/maxawake/assets/js/data/search.json',
+    json: '/assets/js/data/search.json',
     searchResultTemplate: '<div class="px-1 px-sm-2 px-lg-4 px-xl-0">  <a href="{url}">{title}</a>  <div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1">    {categories}    {tags}  </div>  <p>{snippet}</p></div>',
     noResultsText: '<p class="mt-5"></p>',
     templateMiddleware: function(prop, value, template) {
