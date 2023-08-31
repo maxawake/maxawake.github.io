@@ -28,3 +28,5 @@ if RUBY_PLATFORM =~ /linux-musl/
 end
 
 gem "jekyll-include-cache", "~> 0.2.1"
+
+gem "jekyll-seo-tag", "~> 2.8"
