@@ -22,16 +22,14 @@
       </a>
     {% endfor %}
 
-    <button
+    <i
       id="copy-link"
-      aria-label="Copy link"
-      class="btn small"
+      class="fa-fw fas fa-link small"
       data-bs-toggle="tooltip"
       data-bs-placement="top"
       title="{{ site.data.locales[include.lang].post.button.share_link.title }}"
       data-title-succeed="{{ site.data.locales[include.lang].post.button.share_link.succeed }}"
     >
-      <i class="fa-fw fas fa-link pe-none"></i>
-    </button>
+    </i>
   </span>
 </div>
