@@ -16,8 +16,6 @@
 <!-- `site.alt_lang` can specify a language different from the UI -->
 <html lang="en" 
   
-    data-mode="dark"
-  
 >
   <!-- The Head -->
 
@@ -41,22 +39,22 @@
 <meta name="generator" content="Jekyll v4.3.2" />
 <meta property="og:title" content="Tutorial" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Portfolio of Maximilian Maria Richter" />
-<meta property="og:description" content="Portfolio of Maximilian Maria Richter" />
-<link rel="canonical" href="https://maxawake.github.io/categories/tutorial/" />
-<meta property="og:url" content="https://maxawake.github.io/categories/tutorial/" />
-<meta property="og:site_name" content="Portfolio" />
+<meta name="description" content="A minimal, responsive and feature-rich Jekyll theme for technical writing." />
+<meta property="og:description" content="A minimal, responsive and feature-rich Jekyll theme for technical writing." />
+<link rel="canonical" href="http://localhost:4000/categories/tutorial/" />
+<meta property="og:url" content="http://localhost:4000/categories/tutorial/" />
+<meta property="og:site_name" content="Chirpy" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
 <meta property="twitter:title" content="Tutorial" />
-<meta name="twitter:site" content="@MaxWakingUp" />
+<meta name="twitter:site" content="@twitter_username" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"Portfolio of Maximilian Maria Richter","headline":"Tutorial","url":"https://maxawake.github.io/categories/tutorial/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","description":"A minimal, responsive and feature-rich Jekyll theme for technical writing.","headline":"Tutorial","url":"http://localhost:4000/categories/tutorial/"}</script>
 <!-- End Jekyll SEO tag -->
 
   
 
-  <title>Tutorial | Portfolio
+  <title>Tutorial | Chirpy
   </title>
 
   <!--
@@ -71,8 +69,8 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png">
 <link rel="manifest" href="/assets/img/favicons/site.webmanifest">
 <link rel="shortcut icon" href="/assets/img/favicons/favicon.ico">
-<meta name="apple-mobile-web-app-title" content="Portfolio">
-<meta name="application-name" content="Portfolio">
+<meta name="apple-mobile-web-app-title" content="Chirpy">
+<meta name="application-name" content="Chirpy">
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml">
 <meta name="theme-color" content="#ffffff">
@@ -114,6 +112,151 @@
   <!-- JavaScript -->
 
   
+    <!-- Switch the mode between dark and light. -->
+
+<script type="text/javascript">
+  class ModeToggle {
+    static get MODE_KEY() {
+      return 'mode';
+    }
+    static get MODE_ATTR() {
+      return 'data-mode';
+    }
+    static get DARK_MODE() {
+      return 'dark';
+    }
+    static get LIGHT_MODE() {
+      return 'light';
+    }
+    static get ID() {
+      return 'mode-toggle';
+    }
+
+    constructor() {
+      if (this.hasMode) {
+        if (this.isDarkMode) {
+          if (!this.isSysDarkPrefer) {
+            this.setDark();
+          }
+        } else {
+          if (this.isSysDarkPrefer) {
+            this.setLight();
+          }
+        }
+      }
+
+      let self = this;
+
+      /* always follow the system prefers */
+      this.sysDarkPrefers.addEventListener('change', () => {
+        if (self.hasMode) {
+          if (self.isDarkMode) {
+            if (!self.isSysDarkPrefer) {
+              self.setDark();
+            }
+          } else {
+            if (self.isSysDarkPrefer) {
+              self.setLight();
+            }
+          }
+
+          self.clearMode();
+        }
+
+        self.notify();
+      });
+    } /* constructor() */
+
+    get sysDarkPrefers() {
+      return window.matchMedia('(prefers-color-scheme: dark)');
+    }
+
+    get isSysDarkPrefer() {
+      return this.sysDarkPrefers.matches;
+    }
+
+    get isDarkMode() {
+      return this.mode === ModeToggle.DARK_MODE;
+    }
+
+    get isLightMode() {
+      return this.mode === ModeToggle.LIGHT_MODE;
+    }
+
+    get hasMode() {
+      return this.mode != null;
+    }
+
+    get mode() {
+      return sessionStorage.getItem(ModeToggle.MODE_KEY);
+    }
+
+    /* get the current mode on screen */
+    get modeStatus() {
+      if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer)) {
+        return ModeToggle.DARK_MODE;
+      } else {
+        return ModeToggle.LIGHT_MODE;
+      }
+    }
+
+    setDark() {
+      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.DARK_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE);
+    }
+
+    setLight() {
+      document.documentElement.setAttribute(ModeToggle.MODE_ATTR, ModeToggle.LIGHT_MODE);
+      sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE);
+    }
+
+    clearMode() {
+      document.documentElement.removeAttribute(ModeToggle.MODE_ATTR);
+      sessionStorage.removeItem(ModeToggle.MODE_KEY);
+    }
+
+    /* Notify another plugins that the theme mode has changed */
+    notify() {
+      window.postMessage(
+        {
+          direction: ModeToggle.ID,
+          message: this.modeStatus
+        },
+        '*'
+      );
+    }
+
+    flipMode() {
+      if (this.hasMode) {
+        if (this.isSysDarkPrefer) {
+          if (this.isLightMode) {
+            this.clearMode();
+          } else {
+            this.setLight();
+          }
+        } else {
+          if (this.isDarkMode) {
+            this.clearMode();
+          } else {
+            this.setDark();
+          }
+        }
+      } else {
+        if (this.isSysDarkPrefer) {
+          this.setLight();
+        } else {
+          this.setDark();
+        }
+      }
+
+      this.notify();
+    } /* flipMode() */
+  } /* ModeToggle */
+
+  const modeToggle = new ModeToggle();
+</script>
+
+  
 
   <!-- A placeholder to allow defining custom metadata -->
 
@@ -128,14 +271,14 @@
     <a href="/" id="avatar" class="rounded-circle">
       
         
-        <img src="https://pbs.twimg.com/profile_images/1623340747956137987/58pWqZZZ_400x400.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
+        <img src="https://chirpy-img.netlify.app/commons/avatar.jpg" width="112" height="112" alt="avatar" onerror="this.style.display='none'">
       
     </a>
 
     <div class="site-title">
-      <a href="/">Portfolio</a>
+      <a href="/">Chirpy</a>
     </div>
-    <div class="site-subtitle fst-italic">maxawake</div>
+    <div class="site-subtitle fst-italic">A text-focused Jekyll theme</div>
   </div>
   <!-- .profile-wrapper -->
 
@@ -194,13 +337,21 @@
 
   <div class="sidebar-bottom d-flex flex-wrap  align-items-center w-100">
     
+      <button class="mode-toggle btn" aria-label="Switch Mode">
+        <i class="fas fa-adjust"></i>
+      </button>
+
+      
+        <span class="icon-border"></span>
+      
+    
 
     
       
 
       
         <a
-          href="https://github.com/maxawake"
+          href="https://github.com/github_username"
           aria-label="github"
           
 
@@ -223,7 +374,7 @@
 
       
         <a
-          href="https://twitter.com/MaxWakingUp"
+          href="https://twitter.com/twitter_username"
           aria-label="twitter"
           
 
@@ -246,7 +397,7 @@
 
       
         <a
-          href="javascript:location.href = 'mailto:' + ['max.m.richter','protonmail.com'].join('@')"
+          href="javascript:location.href = 'mailto:' + ['example','domain.com'].join('@')"
           aria-label="email"
           
 
@@ -379,13 +530,13 @@
   <h1 class="ps-lg-2">
     <i class="far fa-folder-open fa-fw text-muted"></i>
     Tutorial
-    <span class="lead text-muted ps-2">1</span>
+    <span class="lead text-muted ps-2">3</span>
   </h1>
 
   <ul class="post-content ps-0">
     
       <li class="d-flex justify-content-between px-md-3">
-        <a href="/posts/vlasov_simulation/">Vlasov Simulation in Python</a>
+        <a href="/posts/customize-the-favicon/">Customize the Favicon</a>
         <span class="dash flex-grow-1"></span>
         <!--
   Date format snippet
@@ -398,7 +549,53 @@
 
 <span
   class="text-muted small"
-  data-ts="1565235180"
+  data-ts="1565454840"
+  data-df="ll"
+  
+>
+  Aug 11, 2019
+</span>
+
+      </li>
+    
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="/posts/getting-started/">Getting Started</a>
+        <span class="dash flex-grow-1"></span>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+
+<span
+  class="text-muted small"
+  data-ts="1565355300"
+  data-df="ll"
+  
+>
+  Aug  9, 2019
+</span>
+
+      </li>
+    
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="/posts/write-a-new-post/">Writing a New Post</a>
+        <span class="dash flex-grow-1"></span>
+        <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+
+<span
+  class="text-muted small"
+  data-ts="1565244600"
   data-df="ll"
   
 >
@@ -434,6 +631,42 @@
 
 
 
+
+  <div id="access-lastmod" class="post">
+    <div class="panel-heading">Recently Updated</div>
+    <ul class="post-content list-unstyled ps-0 pb-1 ms-1 mt-2">
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/getting-started/">Getting Started</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/text-and-typography/">Text and Typography</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/write-a-new-post/">Writing a New Post</a>
+        </li>
+      
+        
+        
+        
+        <li class="text-truncate lh-lg">
+          <a href="/posts/customize-the-favicon/">Customize the Favicon</a>
+        </li>
+      
+    </ul>
+  </div>
+  <!-- #access-lastmod -->
 
 
       <!-- The trending tags list -->
@@ -477,6 +710,59 @@
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <div id="access-tags">
@@ -484,10 +770,16 @@
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/physics/">Physics</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/favicon/">favicon</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/simulation/">simulation</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/getting-started/">getting started</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/writing/">writing</a>
       
     </div>
   </div>
@@ -548,6 +840,59 @@
         
         
 
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+    
+  
+    
+    
+    
+    
+      
+        
+        
+
 
 
   <div id="access-tags">
@@ -555,10 +900,16 @@
     <div class="d-flex flex-wrap mt-3 mb-1 me-3">
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/physics/">Physics</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/favicon/">favicon</a>
       
         
-        <a class="post-tag btn btn-outline-primary" href="/tags/simulation/">simulation</a>
+        <a class="post-tag btn btn-outline-primary" href="/tags/getting-started/">getting started</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/typography/">typography</a>
+      
+        
+        <a class="post-tag btn btn-outline-primary" href="/tags/writing/">writing</a>
       
     </div>
   </div>
@@ -582,7 +933,7 @@
 
       <p>©
         2023
-        <a href="https://twitter.com/MaxWakingUp">Maximilian Maria Richter</a>.
+        <a href="https://twitter.com/username">your_full_name</a>.
         
           <span
             data-bs-toggle="tooltip"
