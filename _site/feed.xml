@@ -1,0 +1,105 @@
+
+
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <id>https://maxawake.github.io/</id>
+  <title>Portfolio</title>
+  <subtitle>Portfolio of Maximilian Maria Richter</subtitle>
+  <updated>2023-08-31T15:52:29+02:00</updated>
+  <author>
+    <name>Maximilian Maria Richter</name>
+    <uri>https://maxawake.github.io/</uri>
+  </author>
+  <link rel="self" type="application/atom+xml" href="https://maxawake.github.io/feed.xml"/>
+  <link rel="alternate" type="text/html" hreflang="en"
+    href="https://maxawake.github.io/"/>
+  <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
+  <rights> © 2023 Maximilian Maria Richter </rights>
+  <icon>/assets/img/favicons/favicon.ico</icon>
+  <logo>/assets/img/favicons/favicon-96x96.png</logo>
+
+
+  
+  <entry>
+    <title>Vlasov Simulation in Python</title>
+    <link href="https://maxawake.github.io/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
+    <published>2019-08-08T05:33:00+02:00</published>
+  
+    <updated>2023-08-31T15:34:21+02:00</updated>
+  
+    <id>https://maxawake.github.io/posts/vlasov_simulation/</id>
+    <content src="https://maxawake.github.io/posts/vlasov_simulation/" />
+    <author>
+      <name>Maximilian Maria Richter</name>
+    </author>
+
+  
+    
+    <category term="Simulation" />
+    
+    <category term="Tutorial" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both appr...
+    </summary>
+  
+
+  </entry>
+
+  
+  <entry>
+    <title>Knowledge Base</title>
+    <link href="https://maxawake.github.io/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
+    <published>2019-08-08T05:33:00+02:00</published>
+  
+    <updated>2023-08-31T15:34:21+02:00</updated>
+  
+    <id>https://maxawake.github.io/posts/Knowledge-Base/</id>
+    <content src="https://maxawake.github.io/posts/Knowledge-Base/" />
+    <author>
+      <name>Maximilian Maria Richter</name>
+    </author>
+
+  
+    
+    <category term="Physics" />
+    
+    <category term="Visualization" />
+    
+  
+
+  
+    <summary>
+      
+
+
+
+
+
+      Definition:
+
+A plasma is a quasineutral gas of charged (and neutral) particles in which the particle interactions are predominantly collective
+
+Quasineutral Gas:
+
+$\sim$ equal numbers of +,- charged particles on a scale long compared to the collective interaction scale length
+
+Collective interactions
+
+Charged particles interact simultaneously with many other charged particles (not just 2-body i...
+    </summary>
+  
+
+  </entry>
+
+</feed>
+
+
