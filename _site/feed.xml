@@ -4,7 +4,7 @@
   <id>https://maxawake.github.io/</id>
   <title>Portfolio</title>
   <subtitle>Portfolio of Maximilian Maria Richter</subtitle>
-  <updated>2023-08-31T15:52:29+02:00</updated>
+  <updated>2023-08-31T16:23:28+02:00</updated>
   <author>
     <name>Maximilian Maria Richter</name>
     <uri>https://maxawake.github.io/</uri>
@@ -24,7 +24,7 @@
     <link href="https://maxawake.github.io/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
     <published>2019-08-08T05:33:00+02:00</published>
   
-    <updated>2023-08-31T15:34:21+02:00</updated>
+    <updated>2023-08-31T15:52:44+02:00</updated>
   
     <id>https://maxawake.github.io/posts/vlasov_simulation/</id>
     <content src="https://maxawake.github.io/posts/vlasov_simulation/" />
@@ -60,7 +60,7 @@
     <link href="https://maxawake.github.io/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
     <published>2019-08-08T05:33:00+02:00</published>
   
-    <updated>2023-08-31T15:34:21+02:00</updated>
+    <updated>2023-08-31T15:52:44+02:00</updated>
   
     <id>https://maxawake.github.io/posts/Knowledge-Base/</id>
     <content src="https://maxawake.github.io/posts/Knowledge-Base/" />
