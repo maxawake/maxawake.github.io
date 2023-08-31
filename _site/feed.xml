@@ -1,17 +1,17 @@
 
 
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <id>https://maxawake.github.io/</id>
+  <id>http://localhost:4000/</id>
   <title>Portfolio</title>
   <subtitle>Portfolio of Maximilian Maria Richter</subtitle>
-  <updated>2023-08-31T14:35:57+02:00</updated>
+  <updated>2023-08-31T14:41:30+02:00</updated>
   <author>
     <name>Maximilian Maria Richter</name>
-    <uri>https://maxawake.github.io/</uri>
+    <uri>http://localhost:4000/</uri>
   </author>
-  <link rel="self" type="application/atom+xml" href="https://maxawake.github.io/feed.xml"/>
+  <link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml"/>
   <link rel="alternate" type="text/html" hreflang="en"
-    href="https://maxawake.github.io/"/>
+    href="http://localhost:4000/"/>
   <generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator>
   <rights> © 2023 Maximilian Maria Richter </rights>
   <icon>/assets/img/favicons/favicon.ico</icon>
@@ -21,13 +21,13 @@
   
   <entry>
     <title>Vlasov Simulation in Python</title>
-    <link href="https://maxawake.github.io/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
+    <link href="http://localhost:4000/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
     <published>2019-08-08T05:33:00+02:00</published>
   
     <updated>2019-08-08T05:33:00+02:00</updated>
   
-    <id>https://maxawake.github.io/posts/vlasov_simulation/</id>
-    <content src="https://maxawake.github.io/posts/vlasov_simulation/" />
+    <id>http://localhost:4000/posts/vlasov_simulation/</id>
+    <content src="http://localhost:4000/posts/vlasov_simulation/" />
     <author>
       <name>Maximilian Maria Richter</name>
     </author>
@@ -57,13 +57,13 @@
   
   <entry>
     <title>Knowledge Base</title>
-    <link href="https://maxawake.github.io/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
+    <link href="http://localhost:4000/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
     <published>2019-08-08T05:33:00+02:00</published>
   
     <updated>2019-08-08T05:33:00+02:00</updated>
   
-    <id>https://maxawake.github.io/posts/Knowledge-Base/</id>
-    <content src="https://maxawake.github.io/posts/Knowledge-Base/" />
+    <id>http://localhost:4000/posts/Knowledge-Base/</id>
+    <content src="http://localhost:4000/posts/Knowledge-Base/" />
     <author>
       <name>Maximilian Maria Richter</name>
     </author>
