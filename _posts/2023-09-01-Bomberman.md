@@ -1,15 +1,15 @@
 ---
 title: Reinforcement Learning for Bomberman
-author: Maximilian Maria Richter
 date: 2023-08-30 11:33:00 +0800
 categories: [AI, Tutorial]
 tags: [AI]
 pin: true
 math: true
 mermaid: true
+image:
+    path: /assets/img/media/bomberman.png
+    alt: Example Screenshot of the Bomberman Game used for training the AI
 ---
-
-# Reinforcement Learning for Bomberman
 
 The popular and well known classical computer game Bomberman is undoubtedly one of the
 best-suited environments to explore the realm of reinforcement learning and to test cutting edge
@@ -24,4 +24,4 @@ In this group project report we want to present the elaboration of our investiga
 forcement learning methods as well as techniques to train a computer to play Bomberman in
 competition with AI agents, trained by other students.
 
-Read more [here](media/FML-Project-Report.pdf)
+Read more [here](/assets/img/media/FML-Project-Report.pdf)

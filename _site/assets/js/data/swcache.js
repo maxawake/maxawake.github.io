@@ -42,10 +42,8 @@ const resource = [
 const allowedDomains = [
     
 
-    'maxawake.github.io',
+    'localhost:4000',
 
-    
-        'chirpy-img.netlify.app',
     
 
     'fonts.gstatic.com',

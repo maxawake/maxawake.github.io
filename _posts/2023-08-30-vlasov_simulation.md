@@ -1,13 +1,17 @@
 ---
 title: Vlasov Simulation in Python
-author: Maximilian Maria Richter
-date: 2019-08-08 11:33:00 +0800
+date: 2023-08-30 11:33:00 +0800
 categories: [Simulation, Tutorial]
 tags: [simulation]
 pin: true
 math: true
 mermaid: true
+image:
+    path: /assets/img/media/202308-0116-5708.gif
+    alt: Two-Stream Instability simulated by 1D Vlasov Equation
 ---
+
+![Alt text]()
 
 In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution. 
 
@@ -194,7 +198,7 @@ plt.xlabel("Position $x$")
 plt.ylabel("Velocity $v$")
 ```
 
-![png](vlasov_simulation_files/vlasov_simulation_9_1.png)
+![Vlasov Initial Distribution](/assets/img/media/vlasov1.png)
     
 In principle the only thing left is implementing the time steps. This can be done with two python loops using the upwind scheme. This means we use forward differences when the advection velocity is smaller than zero and backward differences when the velocity is bigger than zero
 
@@ -288,7 +292,7 @@ for it in tqdm.tqdm(range(maxiter)):
 
     100%|██████████| 30000/30000 [00:32<00:00, 915.47it/s]
 
-
-![202308-0117-2639.gif](vlasov_simulation_files/202308-0117-2639.gif)
+![Vlasov Simulation Result 1](/assets/img/media/202308-0116-3726.gif) 
+![Vlasov Simulation Result 2](/assets/img/media/202308-0116-3910.gif)
 
 
