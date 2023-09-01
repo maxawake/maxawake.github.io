@@ -4,7 +4,7 @@
   <id>http://localhost:4000/</id>
   <title>Portfolio</title>
   <subtitle>Portfolio of Maximilian Maria Richter</subtitle>
-  <updated>2023-09-01T02:58:54+02:00</updated>
+  <updated>2023-09-01T03:15:34+02:00</updated>
   <author>
     <name>Maximilian Maria Richter</name>
     <uri>http://localhost:4000/</uri>
@@ -24,7 +24,7 @@
     <link href="http://localhost:4000/posts/Knowledge-Base/" rel="alternate" type="text/html" title="Knowledge Base" />
     <published>2023-08-30T12:33:00+02:00</published>
   
-    <updated>2023-09-01T00:48:40+02:00</updated>
+    <updated>2023-09-01T03:01:23+02:00</updated>
   
     <id>http://localhost:4000/posts/Knowledge-Base/</id>
     <content src="http://localhost:4000/posts/Knowledge-Base/" />
@@ -70,7 +70,7 @@ Charged particles interact simultaneously with many other charged particles (not
     <link href="http://localhost:4000/posts/Covid19/" rel="alternate" type="text/html" title="Improving Time-Series Forecasting of COVID-19 with Artificial Intelligence" />
     <published>2023-08-30T05:33:00+02:00</published>
   
-    <updated>2023-08-30T05:33:00+02:00</updated>
+    <updated>2023-09-01T03:01:23+02:00</updated>
   
     <id>http://localhost:4000/posts/Covid19/</id>
     <content src="http://localhost:4000/posts/Covid19/" />
@@ -110,7 +110,7 @@ contain the viral spread of a potentially deadly d...
     <link href="http://localhost:4000/posts/Bomberman/" rel="alternate" type="text/html" title="Reinforcement Learning for Bomberman" />
     <published>2023-08-30T05:33:00+02:00</published>
   
-    <updated>2023-08-30T05:33:00+02:00</updated>
+    <updated>2023-09-01T03:01:23+02:00</updated>
   
     <id>http://localhost:4000/posts/Bomberman/</id>
     <content src="http://localhost:4000/posts/Bomberman/" />
@@ -150,7 +150,7 @@ massive amount of possible discr...
     <link href="http://localhost:4000/posts/Bachelor-Thesis/" rel="alternate" type="text/html" title="Bachelor Thesis" />
     <published>2023-08-30T05:33:00+02:00</published>
   
-    <updated>2023-08-30T05:33:00+02:00</updated>
+    <updated>2023-09-01T03:01:23+02:00</updated>
   
     <id>http://localhost:4000/posts/Bachelor-Thesis/</id>
     <content src="http://localhost:4000/posts/Bachelor-Thesis/" />
@@ -190,7 +190,7 @@ model. The dynamics...
     <link href="http://localhost:4000/posts/vlasov_simulation/" rel="alternate" type="text/html" title="Vlasov Simulation in Python" />
     <published>2023-08-30T05:33:00+02:00</published>
   
-    <updated>2023-08-31T15:52:44+02:00</updated>
+    <updated>2023-09-01T03:01:23+02:00</updated>
   
     <id>http://localhost:4000/posts/vlasov_simulation/</id>
     <content src="http://localhost:4000/posts/vlasov_simulation/" />

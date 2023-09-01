@@ -3,7 +3,6 @@ title: Knowledge Base
 date: 2023-08-30 11:33:00 +0100
 categories: [Physics, Visualization]
 tags: [Physics]
-pin: true
 math: true
 mermaid: true
 ---
