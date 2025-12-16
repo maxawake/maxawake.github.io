@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on home</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on home</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vlasov-Poisson Simulation with Python</title>
+      <link>http://localhost:1313/post/2024/10/12/simulation/</link>
+      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2024/10/12/simulation/</guid>
+      <description>&lt;p&gt;In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dark Energy Potentials via Symbolic Regression and Bayesian Inference</title>
+      <link>http://localhost:1313/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</link>
+      <pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
+      <guid>http://localhost:1313/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</guid>
+      <description>&lt;h1 id=&#34;machine-learning-quintessence-dark-energy-potentials-via-symbolic-regression-and-bayesian-inference&#34;&gt;Machine Learning Quintessence Dark Energy Potentials via Symbolic Regression and Bayesian Inference&lt;/h1&gt;&#xA;&lt;p&gt;Quintessence is a hypothesized scalar field forming a popular model for dark energy, the nonluminous energy density in the Universe responsible for the accelerated expansion of space.&#xA;This field can change in time and henceforth solve difficulties arising in the ΛCDM standard&#xA;model. The dynamics of the field are governed by its self-interaction potential. To infer the&#xA;form of this potential by observational data, we construct a suitable potential using machine&#xA;learning and derive the observable quantities then numerically. Symbolic regression is a form&#xA;of supervised learning, with the aim of finding the most likely symbolic representations of&#xA;mathematical models for a given data set.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Improving Time-Series Forecasting of COVID-19 with Artificial Intelligence</title>
+      <link>http://localhost:1313/post/2023/08/30/improving-time-series-forecasting-of-covid-19-with-artificial-intelligence/</link>
+      <pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
+      <guid>http://localhost:1313/post/2023/08/30/improving-time-series-forecasting-of-covid-19-with-artificial-intelligence/</guid>
+      <description>&lt;p&gt;Since the beginning of the COVID-19 pandemic in December 2019, the interest in im-&#xA;proving epidemiological and statistical models has grown in an unprecedented way. It&#xA;is of global interest to make better estimations and predictions of the future, in order&#xA;for politics and society to decide which counter measures might be useful to successfully&#xA;contain the viral spread of a potentially deadly disease. Especially promising for such&#xA;tasks are methods from the area of machine learning. Not only can machine learning&#xA;models handle sparse and noisy data when regressing models to real world data, but the&#xA;statistical framework in which they usually are formulated make them perfect candidates&#xA;for assessing possible underlying dynamics.&#xA;In this project we want to evaluate this strength of machine learning by comparing two&#xA;rather different state-of-the-art models which have already been successfully applied to&#xA;real-world datasets of the COVID-19 pandemic . The models under investigation are the&#xA;BayesFlow network, which involves an Invertible Neural Network (INN), and Gaus-&#xA;sian Process Regression (GPR). Even though Gaussian Processes are, by its nature,&#xA;parametric-free models and BayesFlows are simulation-based parametric models, both&#xA;are formulated in the Bayesian framework of probability theory and statistics. It is this&#xA;feature that make both models appealing for comparison, since both are able to yield&#xA;uncertainty estimations for their respective predictions.&#xA;Following this we will be taking a closer look into the classical compartment simulation&#xA;of infectious diseases, namely the SIR-model and its advancements building upon. It is&#xA;not only important to understand the dynamics of such a system in order to interpret the&#xA;results, but also does the BayesFlow depend on the simulation as training samples&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Reinforcement Learning for Bomberman</title>
+      <link>http://localhost:1313/post/2023/08/30/reinforcement-learning-for-bomberman/</link>
+      <pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
+      <guid>http://localhost:1313/post/2023/08/30/reinforcement-learning-for-bomberman/</guid>
+      <description>&lt;p&gt;The popular and well known classical computer game Bomberman is undoubtedly one of the&#xA;best-suited environments to explore the realm of reinforcement learning and to test cutting edge&#xA;machine learning models. Bomberman is certainly not unknown to the community and has al-&#xA;ready been studied in terms of reinforcement learning. Not only does this game consist of a&#xA;massive amount of possible discrete states, but also demands strategic behaviour in competition&#xA;with multiple opponents. This is a difficult task to learn and to solve for a ordinary computer&#xA;and there is no one-size-fits-all approach to this problem. However, recent developments in the&#xA;on going research in reinforcement learning has shown promising results and brought up many&#xA;remarkable strategies. Some of which we want to take a closer look at.&#xA;In this group project report we want to present the elaboration of our investigations to rein-&#xA;forcement learning methods as well as techniques to train a computer to play Bomberman in&#xA;competition with AI agents, trained by other students.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

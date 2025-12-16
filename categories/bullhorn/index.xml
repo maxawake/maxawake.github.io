@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bullhorn on Classic</title>
+    <link>http://localhost:1313/categories/bullhorn/</link>
+    <description>Recent content in Bullhorn on Classic</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 23 Apr 2012 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/bullhorn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hacker with Bullhorn</title>
+      <link>http://localhost:1313/post/2012/04/23/hacker-with-horn/</link>
+      <pubDate>Mon, 23 Apr 2012 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2012/04/23/hacker-with-horn/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;&#34; alt=&#34;Alt text&#34;&gt;&lt;/p&gt;&#xA;&lt;p&gt;In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

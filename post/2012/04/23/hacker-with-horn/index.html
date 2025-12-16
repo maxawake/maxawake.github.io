@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>Vlasov-Poisson Simulation with Python | Classic</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="http://localhost:1313/">~/classic</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/categories/">~/categories</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+          
+          
+          <li class="pull-right">
+            <a href="/index.xml">~/subscribe</a>
+          </li>
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+<h1><span class="title">Vlasov-Poisson Simulation with Python</span></h1>
+<h2 class="author">Maximilian M. Richter</h2>
+<h2 class="date">2012/04/23</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/bullhorn">Bullhorn</a> <a href="/categories/example">Example</a> 
+  
+  
+  
+  
+</p>
+</div>
+
+
+
+<div class="content-wrapper">
+  <main>
+    <p><img src="" alt="Alt text"></p>
+<p>In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#f92672">import</span> tqdm
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span><span style="color:#f92672">import</span> cmasher
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#f92672">import</span> matplotlib.pyplot <span style="color:#66d9ef">as</span> plt
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use(<span style="color:#e6db74">&#34;dark&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>plt<span style="color:#f92672">.</span>style<span style="color:#f92672">.</span>use({<span style="color:#e6db74">&#39;figure.facecolor&#39;</span>: <span style="color:#e6db74">&#39;#111213&#39;</span>})
+</span></span></code></pre></div><p>The idea of simulating the Vlasov equation is to directly evolve the distribution function, which is a 6+1 dimensional scalar function of position and velocity. Formally it can be written as</p>
+<p>$$
+\frac{\mathrm{d}}{\mathrm{d}t} f(\vec{x},\vec{v},t) = 0
+$$</p>
+<p>Usually there are two distribution functions, one for ions and one for electrons. But as we only want to simulate electron dynamics we can omit the ion part here. Taking the total time derivative using the chain rule we find the plasma kinetic equation</p>
+<p>$$
+\frac{\mathrm{d}}{\mathrm{d}t} f=\frac{\partial f}{\partial t}+\frac{\partial x}{\partial t}\frac{\partial f}{\partial x}+\frac{\partial v}{\partial t}\frac{\partial f}{\partial v}=0
+$$</p>
+<p>By identifying $\frac{\partial x}{\partial t}=v$ and $\frac{\partial v}{\partial t}=a$ and using the equation for electrostatic force $F_E=m_ea=q_e E$ we derived the 1D Vlasov-Poisson equation:</p>
+<p>$$
+\frac{\partial f}{\partial t}+v\frac{\partial f}{\partial x}+\frac{q_\alpha E}{m}\frac{\partial f}{\partial v}=0
+$$</p>
+<p>This is generally a hyperbolic conservation law and can be computed numerically by employing standard techniques of solving partial differential equation like the Lax-Wendroff scheme or similar. In this tutorial we use the very simple upwind scheme.</p>
+<p>The final missing ingredient to solve the Vlasov equation is the electric field. The problem is that if we want to simulate moving electrons in principle we have to solve the full Maxwell system of equations, containing E and B fields. In our case however we can neglegt the contribution of the magnetic field and calculate the electric field simply from the Poission equation using the charge density distribution $\rho$. First we know that the divergence of the electric field equals the charge density</p>
+<p>$$
+\nabla\cdot E=4\pi\rho
+$$</p>
+<p>The charge density can simply be found as the first moment of the Vlasov equation, hence</p>
+<p>$$
+\rho(x,t)=q_e\int f(x,v,t) \mathrm{d}v
+$$</p>
+<h1 id="implementation">Implementation</h1>
+<p>To run the simulation of the Vlasov equation on a computer we have to implement a finite difference scheme. As our programming language of choice is python, we have to take special care on performance. This obscures the readability of the code but makes python code run nearly as fast as C code.</p>
+<p>We start by implementing gradients and laplacians in matrix form. The gradient can be approximated by central differences</p>
+<p>$$
+\frac{\partial f(x)}{\partial x}\approx\frac{f(x+h)-f(x-h)}{2h}
+$$</p>
+<p>The corresponding matrix using periodic boundary condition is thus</p>
+<p>$$
+\begin{pmatrix}0 &amp; 1/2 &amp; 0 &amp; &hellip; &amp; -1/2\\ -1/2 &amp; 0 &amp; 1/2 &amp; &hellip; &amp; 0\\ \cdots &amp;&amp;&amp;&amp; \\ 1/2 &amp;0&amp;0&amp; &hellip; &amp; 0\end{pmatrix}
+$$</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">gradient</span>(n):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    matrix <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n)<span style="color:#f92672">*</span><span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    matrix <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    matrix <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">*-</span><span style="color:#ae81ff">0.5</span>, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    matrix[<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    matrix[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#66d9ef">return</span> matrix
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>print(gradient(<span style="color:#ae81ff">6</span>))
+</span></span></code></pre></div><pre><code>[[ 0.   0.5  0.   0.   0.  -0.5]
+ [-0.5  0.   0.5  0.   0.   0. ]
+ [ 0.  -0.5  0.   0.5  0.   0. ]
+ [ 0.   0.  -0.5  0.   0.5  0. ]
+ [ 0.   0.   0.  -0.5  0.   0.5]
+ [ 0.5  0.   0.   0.  -0.5  0. ]]
+</code></pre>
+<p>The Laplacian $\Delta$ in 1D can be approximated by central differences as well, yielding</p>
+<p>$$
+\Delta f(x)=\frac{\partial^2 f(x)}{\partial x^2}\approx\frac{f(x+h)-2f(x)+f(x-h)}{h^2}
+$$</p>
+<p>with corresponding matrix form</p>
+<p>$$
+\begin{pmatrix}-2 &amp; 1 &amp; 0 &amp; &hellip; &amp; 1\\ 1 &amp; -2 &amp; 1 &amp; &hellip; &amp; 0\\ \cdots &amp;&amp;&amp;&amp; \\ 1 &amp;0&amp;0&amp; &hellip; &amp; 2\end{pmatrix}
+$$</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">laplace</span>(n):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    matrix <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n)<span style="color:#f92672">*-</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    matrix <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    matrix <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>diag(np<span style="color:#f92672">.</span>ones(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>), <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>    matrix[<span style="color:#ae81ff">0</span>,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>    matrix[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    <span style="color:#66d9ef">return</span> matrix
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>print(laplace(<span style="color:#ae81ff">6</span>))
+</span></span></code></pre></div><pre><code>[[-2.  1.  0.  0.  0.  1.]
+ [ 1. -2.  1.  0.  0.  0.]
+ [ 0.  1. -2.  1.  0.  0.]
+ [ 0.  0.  1. -2.  1.  0.]
+ [ 0.  0.  0.  1. -2.  1.]
+ [ 1.  0.  0.  0.  1. -2.]]
+</code></pre>
+<h1 id="solving-the-poisson-equation">Solving the Poisson Equation</h1>
+<p>To solve the Poisson equation given a density distribution we will use a simple iterative approach. For this we implement the Jacobi algorithm to solve linear systems of equations. We can evalute as much Jacobi steps as we like to solve the system to a satisfying degree, either by an break criterium or by a fixed number of steps.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">jacobi</span>(A,b,N<span style="color:#f92672">=</span><span style="color:#ae81ff">25</span>,x<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#e6db74">&#34;&#34;&#34;Solves the equation Ax=b via the Jacobi iterative method.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#75715e"># Create an initial guess if needed                                                                                                                                                            </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>    <span style="color:#66d9ef">if</span> x <span style="color:#f92672">is</span> <span style="color:#66d9ef">None</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>        x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros(len(A[<span style="color:#ae81ff">0</span>]))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#75715e"># Create a vector of the diagonal elements of A                                                                                                                                                </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#75715e"># and subtract them from A                                                                                                                                                                     </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    D <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>diag(A)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    R <span style="color:#f92672">=</span> A <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>diagflat(D)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#75715e"># Iterate for N times                                                                                                                                                                          </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(N):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>        x <span style="color:#f92672">=</span> (b <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>dot(R,x)) <span style="color:#f92672">/</span> D
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    <span style="color:#66d9ef">return</span> x
+</span></span></code></pre></div><h1 id="the-simulation-loop">The Simulation loop</h1>
+<p>To evolve the Vlasov equation we iterate over discrete timesteps. The main simulation loop will do the following:</p>
+<ul>
+<li>Advance distribution function in velocity direction</li>
+<li>Calculate charge density from distribution function</li>
+<li>Approximate electric potential from charge density via Jacobi iterations</li>
+<li>Calculate electric field by taking the gradient of the potential</li>
+<li>Advance distribution function in spatial direction with electric field</li>
+</ul>
+<p>We start by defining some simulation constants and construct our initial distribution. The initial position ditribution is a simple uniform distribution and the velocity distribution as an maxwellian (or simply gaussian).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>nx <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span> <span style="color:#75715e"># Number of spatial positions</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>nv <span style="color:#f92672">=</span> <span style="color:#ae81ff">256</span> <span style="color:#75715e"># Number of velocity values</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>maxiter <span style="color:#f92672">=</span> <span style="color:#ae81ff">30000</span> <span style="color:#75715e"># Maximal number of iterations</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>maxiter_jacobi <span style="color:#f92672">=</span> <span style="color:#ae81ff">30</span> <span style="color:#75715e"># Maximal number of Jacobi steps </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>dt <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.001</span> <span style="color:#75715e"># Time step size</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>dx <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span> <span style="color:#75715e"># Spatial step size</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>vmin <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">10</span> <span style="color:#75715e"># Minimal possible velocity</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>vmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span> <span style="color:#75715e"># Maximal possible velocity</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>vth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span><span style="color:#f92672">*</span>vmax  <span style="color:#75715e"># Thermal velocity</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>vbeam <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.8</span><span style="color:#f92672">*</span>nv <span style="color:#75715e"># Beam velocity</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>q_e <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span> <span style="color:#75715e"># Electron charge</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>n_particles <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#75715e"># Initial particle number</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span><span style="color:#75715e"># Allocate memory for the </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>f <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((nx, nv))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>v <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(vmin, vmax, nv)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>dv <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>abs(v[<span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> v[<span style="color:#ae81ff">0</span>]) <span style="color:#75715e"># velocity step size</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span><span style="color:#75715e"># Construct gradient and laplace matrices</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>gradient_matrix <span style="color:#f92672">=</span> gradient(nx)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>laplace_matrix <span style="color:#f92672">=</span> laplace(nx)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span><span style="color:#75715e"># Construct plasma in thermal equilibrium</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nv):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>    <span style="color:#75715e">#f[:, i] = np.exp(-(v[i]-3)**2/vth**2) + np.exp(-(v[i]+3)**2/vth**2) </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    f[:, i] <span style="color:#f92672">=</span> n_particles <span style="color:#f92672">*</span> np<span style="color:#f92672">.</span>exp(<span style="color:#f92672">-</span>(v[i])<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span><span style="color:#f92672">/</span>vth<span style="color:#f92672">**</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>f <span style="color:#f92672">+=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>random(f<span style="color:#f92672">.</span>shape)<span style="color:#f92672">*</span><span style="color:#ae81ff">0.1</span><span style="color:#f92672">*</span>n_particles
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span><span style="color:#75715e"># Get index for beam velocity</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>idx <span style="color:#f92672">=</span> int(vbeam)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span><span style="color:#75715e"># Plot initial distribution</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>plt<span style="color:#f92672">.</span>imshow(f<span style="color:#f92672">.</span>T, cmap<span style="color:#f92672">=</span>plt<span style="color:#f92672">.</span>get_cmap(<span style="color:#e6db74">&#34;cmr.lavender&#34;</span>), aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lower&#34;</span>, extent<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>, nx, vmin, vmax])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>plt<span style="color:#f92672">.</span>colorbar()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>plt<span style="color:#f92672">.</span>title(<span style="color:#e6db74">&#34;Initial distribution function $f(x,v,t=0)$&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>plt<span style="color:#f92672">.</span>xlabel(<span style="color:#e6db74">&#34;Position $x$&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>plt<span style="color:#f92672">.</span>ylabel(<span style="color:#e6db74">&#34;Velocity $v$&#34;</span>)
+</span></span></code></pre></div><p><img src="/assets/img/media/vlasov1.png" alt="Vlasov Initial Distribution"></p>
+<p>In principle the only thing left is implementing the time steps. This can be done with two python loops using the upwind scheme. This means we use forward differences when the advection velocity is smaller than zero and backward differences when the velocity is bigger than zero</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">advance_velocity</span>(f):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(nv<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>            <span style="color:#66d9ef">if</span> v[j] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>                f[i,j] <span style="color:#f92672">=</span> f[i,j] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dx<span style="color:#f92672">*</span>(f[i,j]<span style="color:#f92672">*</span>v[j] <span style="color:#f92672">-</span> f[i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,j]<span style="color:#f92672">*</span>v[j])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>                f[i,j] <span style="color:#f92672">=</span> f[i,j] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dx<span style="color:#f92672">*</span>(f[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>,j]<span style="color:#f92672">*</span>v[j] <span style="color:#f92672">-</span> f[i,j]<span style="color:#f92672">*</span>v[j])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#66d9ef">return</span> f
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">advance_position</span>(f, E):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(nx<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>        <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(nv<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>            <span style="color:#66d9ef">if</span> E[i] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>                f[i,j] <span style="color:#f92672">=</span> f[i,j] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dv<span style="color:#f92672">*</span>(f[i,j] <span style="color:#f92672">-</span> f[i,j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">*</span>E[i]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>            <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>                f[i,j] <span style="color:#f92672">=</span> f[i,j] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dv<span style="color:#f92672">*</span>(f[i,j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">-</span> f[i,j])<span style="color:#f92672">*</span>E[i]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#66d9ef">return</span> f
+</span></span></code></pre></div><p>However, this is very slow in python. We can significantly increase the speed by using numpy vectorization. This obscures the readability of the code, however results in a performance boost of approximately 100 times as fast as simple loops. The updates than look like the following functions</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">advance_velocity</span>(f, v_mask):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>    f[:,v_mask] <span style="color:#f92672">=</span> f[:,v_mask] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dx<span style="color:#f92672">*</span>(f[:,v_mask]<span style="color:#f92672">*</span>v[v_mask] <span style="color:#f92672">-</span> np<span style="color:#f92672">.</span>roll(f, <span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[:,v_mask]<span style="color:#f92672">*</span>v[v_mask])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>    f[:,<span style="color:#f92672">~</span>v_mask] <span style="color:#f92672">=</span> f[:,<span style="color:#f92672">~</span>v_mask] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dx<span style="color:#f92672">*</span>(np<span style="color:#f92672">.</span>roll(f, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)[:,<span style="color:#f92672">~</span>v_mask]<span style="color:#f92672">*</span>v[<span style="color:#f92672">~</span>v_mask] <span style="color:#f92672">-</span> f[:,<span style="color:#f92672">~</span>v_mask]<span style="color:#f92672">*</span>v[<span style="color:#f92672">~</span>v_mask])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>    <span style="color:#66d9ef">return</span> f
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">advance_position</span>(f, E, E_mask):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>    f[E_mask,:] <span style="color:#f92672">-=</span> dt<span style="color:#f92672">/</span>dv<span style="color:#f92672">*</span>((f[E_mask,:]<span style="color:#f92672">.</span>T<span style="color:#f92672">*</span>E[E_mask])<span style="color:#f92672">.</span>T <span style="color:#f92672">-</span> (np<span style="color:#f92672">.</span>roll(f, <span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)[E_mask,:]<span style="color:#f92672">.</span>T<span style="color:#f92672">*</span>E[E_mask])<span style="color:#f92672">.</span>T)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>    f[<span style="color:#f92672">~</span>E_mask,:] <span style="color:#f92672">=</span> f[<span style="color:#f92672">~</span>E_mask,:] <span style="color:#f92672">-</span> dt<span style="color:#f92672">/</span>dv<span style="color:#f92672">*</span>((np<span style="color:#f92672">.</span>roll(f, <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)[<span style="color:#f92672">~</span>E_mask,:] <span style="color:#f92672">-</span> f[<span style="color:#f92672">~</span>E_mask,:])<span style="color:#f92672">.</span>T<span style="color:#f92672">*</span>E[<span style="color:#f92672">~</span>E_mask])<span style="color:#f92672">.</span>T
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>    <span style="color:#66d9ef">return</span> f
+</span></span></code></pre></div><p>The masks can easily be computed by using numpy masking, however the mask for the electric field has to be computed in each step, while the velocity can be computed in advance.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>v_mask <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>argwhere(v <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>)
+</span></span></code></pre></div><p>Finally we can put everything together and implement the time loop. We store the results of every m&rsquo;th time step into an array for later processing, such as creating a gif of the evolution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e"># Plot ever mth step</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>m <span style="color:#f92672">=</span> <span style="color:#ae81ff">100</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#75715e"># Allocate memory for the results</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>result <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((maxiter<span style="color:#f92672">//</span>m, nx, nv))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>plot <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#66d9ef">for</span> it <span style="color:#f92672">in</span> tqdm<span style="color:#f92672">.</span>tqdm(range(maxiter)):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#75715e"># Inject electron beam into simulation </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    f[<span style="color:#ae81ff">0</span>,idx <span style="color:#f92672">+</span> int(np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>normal(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">7</span>))] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#75715e"># Advance velocity distribution</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    f <span style="color:#f92672">=</span> advance_velocity(f, v_mask)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#75715e"># Integrate number density along velocity density to get charge density</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    rho <span style="color:#f92672">=</span> q_e<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>sum(f, axis<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#75715e"># Add constant ion background </span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    rho <span style="color:#f92672">=</span> rho <span style="color:#f92672">+</span> np<span style="color:#f92672">.</span>mean(rho)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    <span style="color:#75715e"># Calculate potential via some Jacobi steps</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    phi <span style="color:#f92672">=</span> jacobi(laplace_matrix, rho, N<span style="color:#f92672">=</span>maxiter_jacobi)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    <span style="color:#75715e"># Calculate electric field</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>    E <span style="color:#f92672">=</span> <span style="color:#f92672">-</span> gradient_matrix<span style="color:#a6e22e">@phi</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>    <span style="color:#75715e"># Get mask for upwind scheme</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    E_mask <span style="color:#f92672">=</span> E <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>    <span style="color:#75715e"># Advance position distribution</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>    f <span style="color:#f92672">=</span> advance_position(f, E, E_mask)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    <span style="color:#75715e"># Save every mth step</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>    <span style="color:#66d9ef">if</span> it<span style="color:#f92672">%</span>m<span style="color:#f92672">==</span><span style="color:#ae81ff">0</span>:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>        result[it<span style="color:#f92672">//</span>m] <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>copy()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>        <span style="color:#66d9ef">if</span> plot:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>            plt<span style="color:#f92672">.</span>imshow(f<span style="color:#f92672">.</span>T, cmap<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;inferno&#34;</span>,aspect<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>, origin<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lower&#34;</span>, extent<span style="color:#f92672">=</span>[<span style="color:#ae81ff">0</span>, nx, vmin, vmax])
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>            plt<span style="color:#f92672">.</span>show()
+</span></span></code></pre></div><pre><code>100%|██████████| 30000/30000 [00:32&lt;00:00, 915.47it/s]
+</code></pre>
+<p><img src="/assets/img/media/202308-0116-3726.gif" alt="Vlasov Simulation Result 1">
+<img src="/assets/img/media/202308-0116-3910.gif" alt="Vlasov Simulation Result 2"></p>
+
+    <a href="/"> >> Home</a>
+  </main>
+</div>
+    <footer>
+      
+      
+      <script>
+      (function() {
+        function center_el(tagName) {
+          var tags = document.getElementsByTagName(tagName), i, tag;
+          for (i = 0; i < tags.length; i++) {
+            tag = tags[i];
+            var parent = tag.parentElement;
+            
+            if (parent.childNodes.length === 1) {
+              
+              if (parent.nodeName === 'A') {
+                parent = parent.parentElement;
+                if (parent.childNodes.length != 1) continue;
+              }
+              if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+            }
+          }
+        }
+        var tagNames = ['img', 'embed', 'object'];
+        for (var i = 0; i < tagNames.length; i++) {
+          center_el(tagNames[i]);
+        }
+      })();
+      </script>
+      <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        packages: {'[+]': ['ams']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+  
+  </script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script type="text/javascript" id="MathJax-script" async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+      
+      <hr/>
+      Open-Source | <a href="https://github.com/goodroot/hugo-classic">Github</a> | <a href="https://keybase.io/goodroot">Keybase</a>
+      
+    </footer>
+  </body>
+</html>
+

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Physics on home</title>
+    <link>http://localhost:1313/tags/physics/</link>
+    <description>Recent content in Physics on home</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/physics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vlasov-Poisson Simulation with Python</title>
+      <link>http://localhost:1313/post/2024/10/12/simulation/</link>
+      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/post/2024/10/12/simulation/</guid>
+      <description>&lt;p&gt;In this tutorial we want to simulate a stream of electrons in the Pierce Diode in one dimension using the electrostatic Vlasov-Poisson Equation. When simulating such a scenario, usually computational plasma physicists use either the fluid discription of plasmas, called Magneto Hydrodynmaics (MHD), or the semi-lagrangian Particle-In-Cell method to simulate the Vlasov equation. However, both approaches have their drawbacks. For example, the MHD theory is based on a few but fundamental assumptions which break down in certain, very interesting, regimes. PIC on the other hand does not have the limits on e.g.resitivity but needs a computationally very intensive amount of particles to generate solutions with a reasonable low amount of noise at a given space-time resolution.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Dark Energy Potentials via Symbolic Regression and Bayesian Inference</title>
+      <link>http://localhost:1313/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</link>
+      <pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
+      <guid>http://localhost:1313/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</guid>
+      <description>&lt;h1 id=&#34;machine-learning-quintessence-dark-energy-potentials-via-symbolic-regression-and-bayesian-inference&#34;&gt;Machine Learning Quintessence Dark Energy Potentials via Symbolic Regression and Bayesian Inference&lt;/h1&gt;&#xA;&lt;p&gt;Quintessence is a hypothesized scalar field forming a popular model for dark energy, the nonluminous energy density in the Universe responsible for the accelerated expansion of space.&#xA;This field can change in time and henceforth solve difficulties arising in the ΛCDM standard&#xA;model. The dynamics of the field are governed by its self-interaction potential. To infer the&#xA;form of this potential by observational data, we construct a suitable potential using machine&#xA;learning and derive the observable quantities then numerically. Symbolic regression is a form&#xA;of supervised learning, with the aim of finding the most likely symbolic representations of&#xA;mathematical models for a given data set.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

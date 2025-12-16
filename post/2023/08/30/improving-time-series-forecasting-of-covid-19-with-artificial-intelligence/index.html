@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
-	<meta name="generator" content="Hugo 0.152.2"><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
@@ -10,8 +9,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="The personal webpage of Maximilian Richter">
-    <title>Home | home</title>
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>Improving Time-Series Forecasting of COVID-19 with Artificial Intelligence | home</title>
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
     <link rel="stylesheet" href="http://localhost:1313/css/theme-override.css">
@@ -27,7 +26,7 @@
         <ul>
           
           
-          <li class="pull-left current">
+          <li class="pull-left ">
             <a href="http://localhost:1313/">~/home</a>
           </li>
           
@@ -49,70 +48,60 @@
     </header>
 
 
+<div class="article-meta">
+<h1><span class="title">Improving Time-Series Forecasting of COVID-19 with Artificial Intelligence</span></h1>
+<h2 class="author">Maximilian M. Richter</h2>
+<h2 class="date">2023/08/30</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/ai">AI</a> <a href="/categories/tutorials">Tutorials</a> 
+  
+  
+  
+  Tags: <a href="/tags/ai">AI</a> 
+  
+  
+</p>
+</div>
+
+
+<div class="post-image">
+  <img src="/images/covid19-graph.png" alt="Result of Time-Series forecasting of infection data  with Gaussian Process Regression">
+  <p class="image-caption">Result of Time-Series forecasting of infection data  with Gaussian Process Regression</p>
+</div>
+
+
+
 
 <div class="content-wrapper">
+  <main>
+    <p>Since the beginning of the COVID-19 pandemic in December 2019, the interest in im-
+proving epidemiological and statistical models has grown in an unprecedented way. It
+is of global interest to make better estimations and predictions of the future, in order
+for politics and society to decide which counter measures might be useful to successfully
+contain the viral spread of a potentially deadly disease. Especially promising for such
+tasks are methods from the area of machine learning. Not only can machine learning
+models handle sparse and noisy data when regressing models to real world data, but the
+statistical framework in which they usually are formulated make them perfect candidates
+for assessing possible underlying dynamics.
+In this project we want to evaluate this strength of machine learning by comparing two
+rather different state-of-the-art models which have already been successfully applied to
+real-world datasets of the COVID-19 pandemic . The models under investigation are the
+BayesFlow network, which involves an Invertible Neural Network (INN), and Gaus-
+sian Process Regression (GPR). Even though Gaussian Processes are, by its nature,
+parametric-free models and BayesFlows are simulation-based parametric models, both
+are formulated in the Bayesian framework of probability theory and statistics. It is this
+feature that make both models appealing for comparison, since both are able to yield
+uncertainty estimations for their respective predictions.
+Following this we will be taking a closer look into the classical compartment simulation
+of infectious diseases, namely the SIR-model and its advancements building upon. It is
+not only important to understand the dynamics of such a system in order to interpret the
+results, but also does the BayesFlow depend on the simulation as training samples</p>
+<p>Read more <a href="/docs/AML-Project-Report.pdf">here</a></p>
 
-
-  <p><img
-id="me"
-src="https://pbs.twimg.com/profile_images/1623340747956137987/58pWqZZZ_400x400.jpg"
-alt="me" width="200px"></p>
-<h2 id="welcome-friend">Welcome, friend!</h2>
-<p>Hi, i am Max and i am a Physics and Computer Science student at Heidelberg University. I am currently Master student in the Star Formation group of Prof. Dr. Ralf Klessen. On part time I am also working at Bosch Sensortec GmbH.</p>
-<p>I want to use this page to gather some of the things i have done in the past. Feel free to reach out to me!</p>
-<h2 id="stuff-i-love">Stuff I love</h2>
-<ul>
-<li>3D Computer Graphics and Scientific Visualization</li>
-<li>Fluid and Plasma Simulations</li>
-<li>Machine Learning and Artificial Intelligence</li>
-<li>Astronomy and Astrophysics</li>
-<li>Art and Music in every form</li>
-<li>Coffee</li>
-</ul>
-<h2 id="academic-and-professional-research">Academic and Professional Research</h2>
-<ul>
-<li>Machine Learning Quintessence Dark-Energy Potentials via Symbolic Regression and Bayesian Inference</li>
-<li>Visual Analysis of 3D Time-Dependent Vector Field Topology of Magnetic Reconnection</li>
-<li>Developement of Calibration Processes for Smart-Glasses</li>
-<li>Machine Learning Methods for Ultrashort Laser Pulses</li>
-</ul>
-<h2 id="hobbies">Hobbies</h2>
-<ul>
-<li>Playing Piano and Guitar as well as Digital Music Production</li>
-<li>Astrophotography</li>
-<li>Penspinning</li>
-<li>Dancing at Parties and Music Festivals</li>
-<li>Playing Video Game</li>
-</ul>
-<hr>
-<h2 id="posts">Posts</h2>
-
-
-  <ul>
-     
-     
-     
-     <li>
-       <span class="date">2024/10/12</span>
-       <a href="/post/2024/10/12/simulation/">Vlasov-Poisson Simulation with Python</a>
-     </li>
-     
-     <li>
-       <span class="date">2023/08/30</span>
-       <a href="/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/">Dark Energy Potentials via Symbolic Regression and Bayesian Inference</a>
-     </li>
-     
-     <li>
-       <span class="date">2023/08/30</span>
-       <a href="/post/2023/08/30/improving-time-series-forecasting-of-covid-19-with-artificial-intelligence/">Improving Time-Series Forecasting of COVID-19 with Artificial Intelligence</a>
-     </li>
-     
-     <li>
-       <span class="date">2023/08/30</span>
-       <a href="/post/2023/08/30/reinforcement-learning-for-bomberman/">Reinforcement Learning for Bomberman</a>
-     </li>
-     
-   </ul>
+    <a href="/"> >> Home</a>
+  </main>
 </div>
     <footer>
       
