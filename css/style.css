@@ -22,6 +22,10 @@
     color: var(--color-highlight);
   }
 
+  h1, h2, h3, h4, h5, h6 {
+    font-family: Palatino;
+  }
+
   header {
     background: var(--color-background-dark);
     padding-bottom: 0.5em;
@@ -30,8 +34,12 @@
   }
 
   .article-meta, .menu a {
-    background: #393E41;
+    background: var(--color-background-dark);
     color: white;
+  }
+
+  .article-meta, .menu h1 {
+    font-size: 9pt;
   }
 
   table {
@@ -142,6 +150,7 @@ output:
 
     */
 
+
 #TableOfContents, #TOC {
   border: 1px solid #eee;
   border-radius: 5px;
@@ -150,6 +159,7 @@ output:
 /* Header and Footer */
 .menu li {
   display: inline-block;
+  font-family: monospace;
 }
 
 .article-meta, .menu a {
