@@ -3,19 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://maxawake.github.io/categories/</loc>
-    <lastmod>2024-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://maxawake.github.io/tags/computer-science/</loc>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://maxawake.github.io/</loc>
-    <lastmod>2024-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://maxawake.github.io/post/2025/09/12/simulation/</loc>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://maxawake.github.io/categories/paper/</loc>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://maxawake.github.io/tags/physics/</loc>
-    <lastmod>2024-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://maxawake.github.io/tags/plasma/</loc>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://maxawake.github.io/post/</loc>
-    <lastmod>2024-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://maxawake.github.io/tags/</loc>
-    <lastmod>2024-10-12T00:00:00+00:00</lastmod>
+    <lastmod>2025-09-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://maxawake.github.io/categories/tutorials/</loc>
     <lastmod>2024-10-12T00:00:00+00:00</lastmod>
@@ -45,5 +57,7 @@
     <lastmod>2023-08-30T11:33:00+08:00</lastmod>
   </url><url>
     <loc>https://maxawake.github.io/contact/</loc>
+  </url><url>
+    <loc>https://maxawake.github.io/gallery/</loc>
   </url>
 </urlset>

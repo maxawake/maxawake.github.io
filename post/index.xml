@@ -6,8 +6,15 @@
     <description>Recent content in Posts on home</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://maxawake.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Local extraction of three-dimensional magnetic reconnection X-lines</title>
+      <link>https://maxawake.github.io/post/2025/09/12/simulation/</link>
+      <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://maxawake.github.io/post/2025/09/12/simulation/</guid>
+      <description>&lt;p&gt;Magnetic reconnection is one of the most important magnetic energy conversion processes observed in laboratory and space plasmas. It describes the breaking and joining of magnetic field lines, leading to the release of magnetic energy and the acceleration of charged particles. Finding regions where fast reconnection occurs is key to understanding this process. However, identifying such reconnection events within a turbulent environment in three dimensions remains a challenge. In this work, we develop a new framework for identifying magnetic reconnection using 3D turbulent plasma simulations. First, we apply bifurcation lines from fluid visualization to magnetic fields and show that they can be identified with X-lines of magnetic reconnection. For reconnection configurations with magnetic guide fields, we then introduce a novel concept of quasi X-lines. Using the spatial information of X-lines in numerical simulations, we further present a local technique to estimate the reconnection rate, obtaining a distribution that features a local maximum near the normalized value 0.1. Additionally, we provide an alternative tool to highlight current sheets in turbulent plasma by measuring magnetic shear layers as the second invariant of the shear strain tensor. These methods, avoiding traditional reliance on global methods, electric fields and current density, offer a new perspective to the quantitative study of magnetic reconnection in plasmas with complex magnetic field topologies. Validated across various plasma simulation models, including kinetic particle-in-cell and resistive magnetohydrodynamics, our approach enables efficient exploration of magnetic field dynamics in turbulent plasma environments.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Vlasov-Poisson Simulation with Python</title>
       <link>https://maxawake.github.io/post/2024/10/12/simulation/</link>

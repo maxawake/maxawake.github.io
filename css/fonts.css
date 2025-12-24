@@ -1,6 +1,6 @@
 @import url('https://rsms.me/inter/inter.css');
 
-html {
+html, body {
   font-family:
     monospace,
     'Inter',

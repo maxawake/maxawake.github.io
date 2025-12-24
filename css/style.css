@@ -471,3 +471,33 @@ pre code {
 .chroma table {
   display: block;
 }
+
+
+.gallery {
+  column-count: 3;
+  column-gap: 1rem;
+}
+
+@media (max-width: 900px) {
+  .gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 500px) {
+  .gallery {
+    column-count: 1;
+  }
+}
+
+.gallery a {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+
+.gallery img {
+  width: 100%;
+  height: auto;
+  display: block;
+}

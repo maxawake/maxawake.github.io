@@ -6,13 +6,27 @@
     <description>Recent content in Tags on home</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Sep 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://maxawake.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Computer Science</title>
+      <link>https://maxawake.github.io/tags/computer-science/</link>
+      <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://maxawake.github.io/tags/computer-science/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Physics</title>
       <link>https://maxawake.github.io/tags/physics/</link>
-      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
       <guid>https://maxawake.github.io/tags/physics/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Plasma</title>
+      <link>https://maxawake.github.io/tags/plasma/</link>
+      <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
+      <guid>https://maxawake.github.io/tags/plasma/</guid>
       <description></description>
     </item>
     <item>
