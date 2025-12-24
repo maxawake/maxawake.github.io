@@ -361,7 +361,7 @@ pre.chroma {
   border-radius: 10px;
   padding-top: 1.2rem;
   /* space for title bar */
-  overflow: hidden;
+  overflow: visible;
 
   /* window feel */
   box-shadow:
@@ -371,8 +371,8 @@ pre.chroma {
 
 .highlight>*,
 pre.chroma>* {
-  overflow: auto;
-  max-height: 60vh;
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 /* ---- Title bar ------------------------------------------- */
@@ -393,6 +393,12 @@ pre.chroma::after {
 
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   pointer-events: none;
+}
+
+.highlight>*,
+pre.chroma>* {
+  overflow-x: auto;
+  overflow-y: visible;
 }
 
 /* ---- macOS traffic-light buttons ------------------------- */
@@ -451,12 +457,6 @@ pre,
 code {
   font-family: "DejaVu Sans Mono";
   margin: 0;
-}
-
-.highlight,
-pre.chroma {
-  max-height: 60vh;
-  overflow: auto;
 }
 
 pre.chroma {
