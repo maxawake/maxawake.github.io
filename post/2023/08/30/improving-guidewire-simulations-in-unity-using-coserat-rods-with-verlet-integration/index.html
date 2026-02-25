@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+    <link rel="manifest" href="/images/site.webmanifest">
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A simple, minimal blog for those who love text.">
+    <title>Improving Guidewire Simulations in Unity using Coserat Rods with Verlet Integration | home</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="https://maxawake.github.io/css/theme-override.css">
+    
+  </head>
+
+  <body>
+    <div class="site-name">
+      <h1>Maximilian M. Richter</h1>
+    </div>
+    <header>
+      <nav>
+        <ul>
+          
+          
+          <li class="pull-left ">
+            <a href="https://maxawake.github.io/">~/home</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/contact/">~/contact</a>
+          </li>
+          
+          
+          <li class="pull-left ">
+            <a href="/gallery/">~/gallery</a>
+          </li>
+          
+
+          
+          
+          <li class="pull-right">
+            <a href="/post/">~/posts</a>
+          </li>
+          
+          
+          <li class="pull-right">
+            <a href="/tags/">~/tags</a>
+          </li>
+          
+
+        </ul>
+      </nav>
+    </header>
+
+
+<div class="article-meta">
+<h1><span class="title">Improving Guidewire Simulations in Unity using Coserat Rods with Verlet Integration</span></h1>
+<h2 class="author">Maximilian M. Richter</h2>
+<h2 class="date">2023/08/30</h2>
+<p class="terms">
+  
+  
+  Categories: <a href="/categories/physics">Physics</a> <a href="/categories/tutorials">Tutorials</a> 
+  
+  
+  
+  Tags: <a href="/tags/simulation">Simulation</a> <a href="/tags/cosserat-rods">Cosserat rods</a> <a href="/tags/guidewires">Guidewires</a> 
+  
+  
+</p>
+</div>
+
+
+
+
+
+<div class="content-wrapper">
+  <main>
+    <p>The simulation of medical guidewires has been a challenging problem in the field of computational medicine. The guidewire is a thin and flexible rod that is used in medical procedures to navigate through the human body. The simulation of guidewire is important for training medical students and for planning medical procedures. In this thesis, we present a improved method for simulating guidewire using the Cosserat rod theory in the Unity game engine. The Cosserat rod theory is a mathematical model that describes the behavior of thin and flexible rods. We use the Cosserat rod theory to model the guidewire as a series of connected particles. We then simulate the guidewire using the position and orientation-based dynamics. Instead of using the standard Euler integration, we implement the second-order symplectic verlet scheme. Additionally, we enabled large rod-element lengths by implementing collisions with these rod elements. These changes had a significnat effect on the stability and computation efficiency, compared to previous approaches. We validate our method by comparing the simulation results with the analytical solution of the Cosserat rod theory. For more complicated cases, we created a ground-truth and com pared the solution for different parameters to this reference. Our method is able to simulate the guidewire with high accuracy and efficiency. We believe that our method can be used in medical training and planning applications.</p>
+<p>Read more <a href="/docs/guidewires/guidewires.pdf">here</a></p>
+<p>See also the presentation <a href="/docs/guidewires/presentation.pdf">pdf</a> or <a href="/docs/guidewires/presentation.pptx">pptx</a></p>
+
+    <a href="/"> >> Home</a>
+  </main>
+</div>
+<footer>
+    
+    
+    <script>
+      (function() {
+        function center_el(tagName) {
+          var tags = document.getElementsByTagName(tagName), i, tag;
+          for (i = 0; i < tags.length; i++) {
+            tag = tags[i];
+            var parent = tag.parentElement;
+            
+            if (parent.childNodes.length === 1) {
+              
+              if (parent.nodeName === 'A') {
+                parent = parent.parentElement;
+                if (parent.childNodes.length != 1) continue;
+              }
+              if (parent.nodeName === 'P') parent.style.textAlign = 'center';
+            }
+          }
+        }
+        var tagNames = ['img', 'embed', 'object'];
+        for (var i = 0; i < tagNames.length; i++) {
+          center_el(tagNames[i]);
+        }
+      })();
+    </script>
+    <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']],
+        displayMath: [['$$','$$'], ['\\[', '\\]']],
+        processEscapes: true,
+        processEnvironments: true,
+        packages: {'[+]': ['ams', 'cases', 'empheq']}
+      },
+      options: {
+        skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+      }
+    };
+  
+    window.addEventListener('load', (event) => {
+        document.querySelectorAll("mjx-container").forEach(function(x){
+          x.parentElement.classList += 'has-jax'})
+      });
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+        type="text/javascript"
+        id="MathJax-script"
+        async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    
+    
+    <hr>
+    © Maximilian Richter | <a href="https://github.com/maxawake">Github</a> | <a href="https://www.linkedin.com/in/maximilian-maria-richter-3480b1272/">LinkedIn</a>
+      
+</footer>
+</body>
+</html>
+
