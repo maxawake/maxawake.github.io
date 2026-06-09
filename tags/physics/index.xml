@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Physics on home</title>
-    <link>https://maxawake.github.io/tags/physics/</link>
-    <description>Recent content in Physics on home</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 12 Sep 2025 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://maxawake.github.io/tags/physics/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Local extraction of three-dimensional magnetic reconnection X-lines</title>
-      <link>https://maxawake.github.io/post/2025/09/12/simulation/</link>
-      <pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
-      <guid>https://maxawake.github.io/post/2025/09/12/simulation/</guid>
-      <description>&lt;p&gt;Magnetic reconnection is one of the most important magnetic energy conversion processes observed in laboratory and space plasmas. It describes the breaking and joining of magnetic field lines, leading to the release of magnetic energy and the acceleration of charged particles. Finding regions where fast reconnection occurs is key to understanding this process. However, identifying such reconnection events within a turbulent environment in three dimensions remains a challenge. In this work, we develop a new framework for identifying magnetic reconnection using 3D turbulent plasma simulations. First, we apply bifurcation lines from fluid visualization to magnetic fields and show that they can be identified with X-lines of magnetic reconnection. For reconnection configurations with magnetic guide fields, we then introduce a novel concept of quasi X-lines. Using the spatial information of X-lines in numerical simulations, we further present a local technique to estimate the reconnection rate, obtaining a distribution that features a local maximum near the normalized value 0.1. Additionally, we provide an alternative tool to highlight current sheets in turbulent plasma by measuring magnetic shear layers as the second invariant of the shear strain tensor. These methods, avoiding traditional reliance on global methods, electric fields and current density, offer a new perspective to the quantitative study of magnetic reconnection in plasmas with complex magnetic field topologies. Validated across various plasma simulation models, including kinetic particle-in-cell and resistive magnetohydrodynamics, our approach enables efficient exploration of magnetic field dynamics in turbulent plasma environments.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Vlasov-Poisson Simulation with Python</title>
-      <link>https://maxawake.github.io/post/2024/10/12/simulation/</link>
-      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://maxawake.github.io/post/2024/10/12/simulation/</guid>
-      <description>&lt;h1 id=&#34;solving-the-vlasov-poisson-equation-using-python&#34;&gt;Solving the Vlasov-Poisson equation using Python&lt;/h1&gt;&#xA;&lt;p&gt;A plasma is a quasi-neutral gas of charged and neutral particles showing non-trivial collective behavior, distinct from other states of matter. The dynamics of plasma can be derived from the Boltzmann equation, where we can usually assume that we have a negligible amount of collisions. This leads us to the collisionless Boltzmann or &lt;strong&gt;Vlasov equation&lt;/strong&gt;. In this tutorial, we want to simulate a simple one-dimensional plasma using the Vlasov equation and look at Landau damping and two kinetic instabilities. Since in one dimension we can&amp;rsquo;t have any magnetic fields, we actually solve the electrostatic Vlasov-Poisson equation.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Dark Energy Potentials via Symbolic Regression and Bayesian Inference</title>
-      <link>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</link>
-      <pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
-      <guid>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</guid>
-      <description>&lt;h1 id=&#34;machine-learning-quintessence-dark-energy-potentials-via-symbolic-regression-and-bayesian-inference&#34;&gt;Machine Learning Quintessence Dark Energy Potentials via Symbolic Regression and Bayesian Inference&lt;/h1&gt;&#xA;&lt;p&gt;Quintessence is a hypothesized scalar field forming a popular model for dark energy, the nonluminous energy density in the Universe responsible for the accelerated expansion of space.&#xA;This field can change in time and henceforth solve difficulties arising in the ΛCDM standard&#xA;model. The dynamics of the field are governed by its self-interaction potential. To infer the&#xA;form of this potential by observational data, we construct a suitable potential using machine&#xA;learning and derive the observable quantities then numerically. Symbolic regression is a form&#xA;of supervised learning, with the aim of finding the most likely symbolic representations of&#xA;mathematical models for a given data set.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Physics on home</title>
+		<link>https://maxawake.github.io/tags/physics/</link>
+		<description>Recent content in Physics on home</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 12 Sep 2025 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://maxawake.github.io/tags/physics/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Local extraction of three-dimensional magnetic reconnection X-lines</title>
+				<link>https://maxawake.github.io/post/2025/09/12/simulation/</link>
+				<pubDate>Fri, 12 Sep 2025 00:00:00 +0000</pubDate>
+				<guid>https://maxawake.github.io/post/2025/09/12/simulation/</guid>
+				<description>&lt;p&gt;Magnetic reconnection is one of the most important magnetic energy conversion processes observed in laboratory and space plasmas. It describes the breaking and joining of magnetic field lines, leading to the release of magnetic energy and the acceleration of charged particles. Finding regions where fast reconnection occurs is key to understanding this process. However, identifying such reconnection events within a turbulent environment in three dimensions remains a challenge. In this work, we develop a new framework for identifying magnetic reconnection using 3D turbulent plasma simulations. First, we apply bifurcation lines from fluid visualization to magnetic fields and show that they can be identified with X-lines of magnetic reconnection. For reconnection configurations with magnetic guide fields, we then introduce a novel concept of quasi X-lines. Using the spatial information of X-lines in numerical simulations, we further present a local technique to estimate the reconnection rate, obtaining a distribution that features a local maximum near the normalized value 0.1. Additionally, we provide an alternative tool to highlight current sheets in turbulent plasma by measuring magnetic shear layers as the second invariant of the shear strain tensor. These methods, avoiding traditional reliance on global methods, electric fields and current density, offer a new perspective to the quantitative study of magnetic reconnection in plasmas with complex magnetic field topologies. Validated across various plasma simulation models, including kinetic particle-in-cell and resistive magnetohydrodynamics, our approach enables efficient exploration of magnetic field dynamics in turbulent plasma environments.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Vlasov-Poisson Simulation with Python</title>
+				<link>https://maxawake.github.io/post/2024/10/12/simulation/</link>
+				<pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+				<guid>https://maxawake.github.io/post/2024/10/12/simulation/</guid>
+				<description>&lt;h1 id=&#34;solving-the-vlasov-poisson-equation-using-python&#34;&gt;Solving the Vlasov-Poisson equation using Python&lt;/h1&gt;&#xA;&lt;p&gt;A plasma is a quasi-neutral gas of charged and neutral particles showing non-trivial collective behavior, distinct from other states of matter. The dynamics of plasma can be derived from the Boltzmann equation, where we can usually assume that we have a negligible amount of collisions. This leads us to the collisionless Boltzmann or &lt;strong&gt;Vlasov equation&lt;/strong&gt;. In this tutorial, we want to simulate a simple one-dimensional plasma using the Vlasov equation and look at Landau damping and two kinetic instabilities. Since in one dimension we can&amp;rsquo;t have any magnetic fields, we actually solve the electrostatic Vlasov-Poisson equation.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Dark Energy Potentials via Symbolic Regression and Bayesian Inference</title>
+				<link>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</link>
+				<pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
+				<guid>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</guid>
+				<description>&lt;h1 id=&#34;machine-learning-quintessence-dark-energy-potentials-via-symbolic-regression-and-bayesian-inference&#34;&gt;Machine Learning Quintessence Dark Energy Potentials via Symbolic Regression and Bayesian Inference&lt;/h1&gt;&#xA;&lt;p&gt;Quintessence is a hypothesized scalar field forming a popular model for dark energy, the nonluminous energy density in the Universe responsible for the accelerated expansion of space.&#xA;This field can change in time and henceforth solve difficulties arising in the ΛCDM standard&#xA;model. The dynamics of the field are governed by its self-interaction potential. To infer the&#xA;form of this potential by observational data, we construct a suitable potential using machine&#xA;learning and derive the observable quantities then numerically. Symbolic regression is a form&#xA;of supervised learning, with the aim of finding the most likely symbolic representations of&#xA;mathematical models for a given data set.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

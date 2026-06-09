@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Physics on home</title>
-    <link>https://maxawake.github.io/categories/physics/</link>
-    <description>Recent content in Physics on home</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 10 May 2024 11:33:00 +0800</lastBuildDate>
-    <atom:link href="https://maxawake.github.io/categories/physics/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Improving Guidewire Simulations in Unity using Coserat Rods with Verlet Integration</title>
-      <link>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</link>
-      <pubDate>Fri, 10 May 2024 11:33:00 +0800</pubDate>
-      <guid>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</guid>
-      <description>&lt;p&gt;The simulation of medical guidewires has been a challenging problem in the field of computational medicine. The guidewire is a thin and flexible rod that is used in medical procedures to navigate through the human body. The simulation of guidewire is important for training medical students and for planning medical procedures. In this thesis, we present a improved method for simulating guidewire using the Cosserat rod theory in the Unity game engine. The Cosserat rod theory is a mathematical model that describes the behavior of thin and flexible rods. We use the Cosserat rod theory to model the guidewire as a series of connected particles. We then simulate the guidewire using the position and orientation-based dynamics. Instead of using the standard Euler integration, we implement the second-order symplectic verlet scheme. Additionally, we enabled large rod-element lengths by implementing collisions with these rod elements. These changes had a significnat effect on the stability and computation efficiency, compared to previous approaches. We validate our method by comparing the simulation results with the analytical solution of the Cosserat rod theory. For more complicated cases, we created a ground-truth and com pared the solution for different parameters to this reference. Our method is able to simulate the guidewire with high accuracy and efficiency. We believe that our method can be used in medical training and planning applications.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Dark Energy Potentials via Symbolic Regression and Bayesian Inference</title>
-      <link>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</link>
-      <pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
-      <guid>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</guid>
-      <description>&lt;h1 id=&#34;machine-learning-quintessence-dark-energy-potentials-via-symbolic-regression-and-bayesian-inference&#34;&gt;Machine Learning Quintessence Dark Energy Potentials via Symbolic Regression and Bayesian Inference&lt;/h1&gt;&#xA;&lt;p&gt;Quintessence is a hypothesized scalar field forming a popular model for dark energy, the nonluminous energy density in the Universe responsible for the accelerated expansion of space.&#xA;This field can change in time and henceforth solve difficulties arising in the ΛCDM standard&#xA;model. The dynamics of the field are governed by its self-interaction potential. To infer the&#xA;form of this potential by observational data, we construct a suitable potential using machine&#xA;learning and derive the observable quantities then numerically. Symbolic regression is a form&#xA;of supervised learning, with the aim of finding the most likely symbolic representations of&#xA;mathematical models for a given data set.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Physics on home</title>
+		<link>https://maxawake.github.io/categories/physics/</link>
+		<description>Recent content in Physics on home</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 10 May 2024 11:33:00 +0800</lastBuildDate>
+		
+			<atom:link href="https://maxawake.github.io/categories/physics/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Improving Guidewire Simulations in Unity using Coserat Rods with Verlet Integration</title>
+				<link>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</link>
+				<pubDate>Fri, 10 May 2024 11:33:00 +0800</pubDate>
+				<guid>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</guid>
+				<description>&lt;p&gt;The simulation of medical guidewires has been a challenging problem in the field of computational medicine. The guidewire is a thin and flexible rod that is used in medical procedures to navigate through the human body. The simulation of guidewire is important for training medical students and for planning medical procedures. In this thesis, we present a improved method for simulating guidewire using the Cosserat rod theory in the Unity game engine. The Cosserat rod theory is a mathematical model that describes the behavior of thin and flexible rods. We use the Cosserat rod theory to model the guidewire as a series of connected particles. We then simulate the guidewire using the position and orientation-based dynamics. Instead of using the standard Euler integration, we implement the second-order symplectic verlet scheme. Additionally, we enabled large rod-element lengths by implementing collisions with these rod elements. These changes had a significnat effect on the stability and computation efficiency, compared to previous approaches. We validate our method by comparing the simulation results with the analytical solution of the Cosserat rod theory. For more complicated cases, we created a ground-truth and com pared the solution for different parameters to this reference. Our method is able to simulate the guidewire with high accuracy and efficiency. We believe that our method can be used in medical training and planning applications.&lt;/p&gt;</description>
+			</item>
+			<item>
+				<title>Dark Energy Potentials via Symbolic Regression and Bayesian Inference</title>
+				<link>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</link>
+				<pubDate>Wed, 30 Aug 2023 11:33:00 +0800</pubDate>
+				<guid>https://maxawake.github.io/post/2023/08/30/dark-energy-potentials-via-symbolic-regression-and-bayesian-inference/</guid>
+				<description>&lt;h1 id=&#34;machine-learning-quintessence-dark-energy-potentials-via-symbolic-regression-and-bayesian-inference&#34;&gt;Machine Learning Quintessence Dark Energy Potentials via Symbolic Regression and Bayesian Inference&lt;/h1&gt;&#xA;&lt;p&gt;Quintessence is a hypothesized scalar field forming a popular model for dark energy, the nonluminous energy density in the Universe responsible for the accelerated expansion of space.&#xA;This field can change in time and henceforth solve difficulties arising in the ΛCDM standard&#xA;model. The dynamics of the field are governed by its self-interaction potential. To infer the&#xA;form of this potential by observational data, we construct a suitable potential using machine&#xA;learning and derive the observable quantities then numerically. Symbolic regression is a form&#xA;of supervised learning, with the aim of finding the most likely symbolic representations of&#xA;mathematical models for a given data set.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

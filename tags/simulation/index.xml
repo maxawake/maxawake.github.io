@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Simulation on home</title>
-    <link>https://maxawake.github.io/tags/simulation/</link>
-    <description>Recent content in Simulation on home</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 10 May 2024 11:33:00 +0800</lastBuildDate>
-    <atom:link href="https://maxawake.github.io/tags/simulation/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Improving Guidewire Simulations in Unity using Coserat Rods with Verlet Integration</title>
-      <link>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</link>
-      <pubDate>Fri, 10 May 2024 11:33:00 +0800</pubDate>
-      <guid>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</guid>
-      <description>&lt;p&gt;The simulation of medical guidewires has been a challenging problem in the field of computational medicine. The guidewire is a thin and flexible rod that is used in medical procedures to navigate through the human body. The simulation of guidewire is important for training medical students and for planning medical procedures. In this thesis, we present a improved method for simulating guidewire using the Cosserat rod theory in the Unity game engine. The Cosserat rod theory is a mathematical model that describes the behavior of thin and flexible rods. We use the Cosserat rod theory to model the guidewire as a series of connected particles. We then simulate the guidewire using the position and orientation-based dynamics. Instead of using the standard Euler integration, we implement the second-order symplectic verlet scheme. Additionally, we enabled large rod-element lengths by implementing collisions with these rod elements. These changes had a significnat effect on the stability and computation efficiency, compared to previous approaches. We validate our method by comparing the simulation results with the analytical solution of the Cosserat rod theory. For more complicated cases, we created a ground-truth and com pared the solution for different parameters to this reference. Our method is able to simulate the guidewire with high accuracy and efficiency. We believe that our method can be used in medical training and planning applications.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Simulation on home</title>
+		<link>https://maxawake.github.io/tags/simulation/</link>
+		<description>Recent content in Simulation on home</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Fri, 10 May 2024 11:33:00 +0800</lastBuildDate>
+		
+			<atom:link href="https://maxawake.github.io/tags/simulation/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Improving Guidewire Simulations in Unity using Coserat Rods with Verlet Integration</title>
+				<link>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</link>
+				<pubDate>Fri, 10 May 2024 11:33:00 +0800</pubDate>
+				<guid>https://maxawake.github.io/post/2024/05/10/improving-guidewire-simulations-in-unity-using-coserat-rods-with-verlet-integration/</guid>
+				<description>&lt;p&gt;The simulation of medical guidewires has been a challenging problem in the field of computational medicine. The guidewire is a thin and flexible rod that is used in medical procedures to navigate through the human body. The simulation of guidewire is important for training medical students and for planning medical procedures. In this thesis, we present a improved method for simulating guidewire using the Cosserat rod theory in the Unity game engine. The Cosserat rod theory is a mathematical model that describes the behavior of thin and flexible rods. We use the Cosserat rod theory to model the guidewire as a series of connected particles. We then simulate the guidewire using the position and orientation-based dynamics. Instead of using the standard Euler integration, we implement the second-order symplectic verlet scheme. Additionally, we enabled large rod-element lengths by implementing collisions with these rod elements. These changes had a significnat effect on the stability and computation efficiency, compared to previous approaches. We validate our method by comparing the simulation results with the analytical solution of the Cosserat rod theory. For more complicated cases, we created a ground-truth and com pared the solution for different parameters to this reference. Our method is able to simulate the guidewire with high accuracy and efficiency. We believe that our method can be used in medical training and planning applications.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>

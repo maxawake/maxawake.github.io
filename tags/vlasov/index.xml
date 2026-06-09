@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Vlasov on home</title>
-    <link>https://maxawake.github.io/tags/vlasov/</link>
-    <description>Recent content in Vlasov on home</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://maxawake.github.io/tags/vlasov/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Vlasov-Poisson Simulation with Python</title>
-      <link>https://maxawake.github.io/post/2024/10/12/simulation/</link>
-      <pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
-      <guid>https://maxawake.github.io/post/2024/10/12/simulation/</guid>
-      <description>&lt;h1 id=&#34;solving-the-vlasov-poisson-equation-using-python&#34;&gt;Solving the Vlasov-Poisson equation using Python&lt;/h1&gt;&#xA;&lt;p&gt;A plasma is a quasi-neutral gas of charged and neutral particles showing non-trivial collective behavior, distinct from other states of matter. The dynamics of plasma can be derived from the Boltzmann equation, where we can usually assume that we have a negligible amount of collisions. This leads us to the collisionless Boltzmann or &lt;strong&gt;Vlasov equation&lt;/strong&gt;. In this tutorial, we want to simulate a simple one-dimensional plasma using the Vlasov equation and look at Landau damping and two kinetic instabilities. Since in one dimension we can&amp;rsquo;t have any magnetic fields, we actually solve the electrostatic Vlasov-Poisson equation.&lt;/p&gt;</description>
-    </item>
-  </channel>
+	<channel>
+		<title>Vlasov on home</title>
+		<link>https://maxawake.github.io/tags/vlasov/</link>
+		<description>Recent content in Vlasov on home</description>
+		<generator>Hugo</generator>
+		<language>en-us</language>
+		
+		
+		
+		
+			<lastBuildDate>Sat, 12 Oct 2024 00:00:00 +0000</lastBuildDate>
+		
+			<atom:link href="https://maxawake.github.io/tags/vlasov/index.xml" rel="self" type="application/rss+xml" />
+			<item>
+				<title>Vlasov-Poisson Simulation with Python</title>
+				<link>https://maxawake.github.io/post/2024/10/12/simulation/</link>
+				<pubDate>Sat, 12 Oct 2024 00:00:00 +0000</pubDate>
+				<guid>https://maxawake.github.io/post/2024/10/12/simulation/</guid>
+				<description>&lt;h1 id=&#34;solving-the-vlasov-poisson-equation-using-python&#34;&gt;Solving the Vlasov-Poisson equation using Python&lt;/h1&gt;&#xA;&lt;p&gt;A plasma is a quasi-neutral gas of charged and neutral particles showing non-trivial collective behavior, distinct from other states of matter. The dynamics of plasma can be derived from the Boltzmann equation, where we can usually assume that we have a negligible amount of collisions. This leads us to the collisionless Boltzmann or &lt;strong&gt;Vlasov equation&lt;/strong&gt;. In this tutorial, we want to simulate a simple one-dimensional plasma using the Vlasov equation and look at Landau damping and two kinetic instabilities. Since in one dimension we can&amp;rsquo;t have any magnetic fields, we actually solve the electrostatic Vlasov-Poisson equation.&lt;/p&gt;</description>
+			</item>
+	</channel>
 </rss>
